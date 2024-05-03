@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ArtWarehouse</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/fontawesome/css/all.css" />
+</head>
+<body>
+    <header class="container header">
+        <div class="header-content">
+            <h1 class="main-title">Арт-Склад</h1>
+            <nav class="main-navigation">
+                <div>
+                    <i class="far fa-address-card"></i>
+                    <a class="main-navigation_link">Контакты</a>
+                </div>
+                <div>
+                    <i class="far fa-question-circle"></i>
+                    <a class="main-navigation_link">Помощь</a>
+                </div>
+                <div class="ml-5">
+                    <i class="fas fa-user-check"></i>
+                    <a class="main-navigation_link user-link">Иванов И.И.</a>
+                </div>
+                <div>
+                    <i class="fas fa-sign-out-alt"></i>
+                    <a class="main-navigation_link">Выход</a>
+                </div>
+            </nav>
+        </div>
+        <div class="main-tabs">
+            <a class="tab-item tab-item_active">Моя компания</a>
+            <a class="tab-item">Закупки</a>
+            <a class="tab-item">Продажи</a>
+            <a class="tab-item">Склад</a>
+            <a class="tab-item">Документы</a>
+        </div>
+
+    </header>
+    <div class="container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (e) => {
+
+            const mainTabsEl = document.querySelector('.main-tabs');
+            const listTabItems = mainTabsEl.querySelectorAll('.tab-item');
+
+            mainTabsEl.addEventListener('click', (e) => {
+                if (e.target.classList.contains('tab-item')) {
+
+                    listTabItems.forEach(item => {
+                        item.classList.remove('tab-item_active');
+                    });
+
+                    e.target.classList.add('tab-item_active');
+                }
+            });
+        });
+    </script>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
