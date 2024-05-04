@@ -1,6 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<head>
+    <link rel="stylesheet" href="~/css/home/home.css" />
+</head>
 
-<div class="content">
+<div class="home-content">
+    <h1 class="home-title">Арт-Склад</h1>
+    <p class="home-descr">
+        Система складского учёта и товарного документооборота. Разработана для ООО "Фастинтергрупп".
+    </p>
+    <p class="home-copy">AnitaSalujaStudio&copy; little wing studio&copy; 2024</p>
+    <a class="btn btn-info w-25 home-btn">Вход</a>
 </div>
+
+@section Scripts {
+    <script>
+        const screenHeight = document.documentElement.clientHeight;
+        const header = document.querySelector('.header');
+        const homeContentHeight = screenHeight - header.offsetHeight;
+
+        const homeContentElement = document.querySelector('.home-content');
+        homeContentElement.style.height = `${homeContentHeight}px`;
+    </script>
+}

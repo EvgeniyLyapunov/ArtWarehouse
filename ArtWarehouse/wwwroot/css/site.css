@@ -7,7 +7,7 @@
     padding-top: 30px;
     padding-left: 60px;
     padding-right: 60px;
-    background-color: #469fbf;
+    background-image: linear-gradient(to bottom, #4bc3e8 0%, #469fbf 7%);
 }
 
 .header-content {
@@ -16,6 +16,18 @@
     display:flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.main-title-group {
+    display: flex;
+    align-items: center;
+}
+
+.main-logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    background: url('../images/logo/logo.png') center / contain no-repeat;
 }
 
 .main-title {

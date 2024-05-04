@@ -1,0 +1,64 @@
+﻿@font-face {
+    font-family: 'Ruslan Display';
+    src: url('../../fonts/RuslanDisplay.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+.home-content {
+    position: relative;
+    width: 100%;
+    padding: 60px;
+/*    background: url('../../images/main_picture.jpg') center / cover no-repeat;
+*/}
+
+.home-content::after {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../../images/main_picture.jpg') center / cover no-repeat;
+    filter: opacity(0.8) saturate(0.8);
+}
+
+.home-title {
+    font-family: 'Ruslan Display';
+    font-size: 84px;
+    color: #085c7a;
+}
+
+.home-descr {
+    width: 70%;
+    font-weight: 700;
+    font-size: 24px;
+    color: #0c455a;
+}
+
+.home-copy {
+    position: absolute;
+    bottom: 60px;
+    left: 60px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #0c455a;
+}
+
+a:not([href]):not([tabindex]).home-btn {
+    color: #fff;
+}
+
+.home-btn {
+    position: absolute;
+    bottom: 60px;
+    right: 60px;
+    font-weight:500;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+}
+
+
