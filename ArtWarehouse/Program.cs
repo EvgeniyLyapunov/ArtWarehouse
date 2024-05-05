@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +14,8 @@ namespace ArtWarehouse
     {
         public static void Main(string[] args)
         {
+            var builder = WebApplication.CreateBuilder();
+            builder.Configuration.AddJsonFile("appsettings.json");
             CreateHostBuilder(args).Build().Run();
         }
 

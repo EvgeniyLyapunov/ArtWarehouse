@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Стартовая страница";
 }
 <head>
     <link rel="stylesheet" href="~/css/home/home.css" />
@@ -11,7 +11,7 @@
         Система складского учёта и товарного документооборота. Разработана для ООО "Фастинтергрупп".
     </p>
     <p class="home-copy">AnitaSalujaStudio&copy; little wing studio&copy; 2024</p>
-    <a class="btn btn-info w-25 home-btn">Вход</a>
+    <a class="btn btn-info w-25 home-btn" asp-controller="Warehouse" asp-action="Index">Вход</a>
 </div>
 
 @section Scripts {

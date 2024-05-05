@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Ошибка";
+}
+
+<div class="jumbotron">
+    <h1 class="display-4">Ошибка</h1>
+    <p class="lead">@TempData["ErrorSoursPageMessage"]</p>
+    <hr class="my-4">
+    <p>@TempData["ErrorMessage"]</p>
+    <a class="btn btn-info btn-lg" href="#" role="button" onclick="window.history.go(-1)">Назад</a>
+</div>
+
+
