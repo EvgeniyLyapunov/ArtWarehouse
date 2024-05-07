@@ -82,5 +82,24 @@ namespace ArtWarehouse.Controllers
 
             return View(goodsCompleteInfo_MV);
         }
+
+        [HttpGet]
+        public IActionResult RequestFor_CardOfGoods(int id)
+        {
+            GoodsInfoForCard_MV goodsInfoForCard_MV;
+
+            try
+            {
+                goodsInfoForCard_MV = warehouse_Db.GoodsInfoForCard_Get(id);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorSoursPageMessage"] = "Ошибка получения данных из Базы Данных";
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index", "Error");
+            }
+
+            return View(goodsInfoForCard_MV);
+        }
     }
 }

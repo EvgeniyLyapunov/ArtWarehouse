@@ -1,0 +1,51 @@
+﻿@model ArtWarehouse.Models.ModelsView.GoodsInfoForCard_MV
+
+@{
+    ViewData["Title"] = "Склад";
+}
+
+<head>
+    <style>
+        .card-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-width: 0 4px 4px 4px;
+            border-style: solid;
+            border-color: #469fbf;
+            border-radius: 0 0 4px 4px;
+        }
+    </style>
+</head>
+
+<div class="card-content">
+    <div class="card text-center shadow">
+        <div class="card-header text-left">
+            <h1>@Model.goods_name</h1>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Особое обращение с титулом</h5>
+            <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
+            <a href="#" class="btn btn-primary">Идти куда-нибудь</a>
+        </div>
+        <div class="card-footer text-muted">
+            2 days ago
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+
+        const screenHeight = document.documentElement.clientHeight;
+        const header = document.querySelector('.header');
+        const contentHeight = screenHeight - header.offsetHeight;
+
+        const contentElement = document.querySelector('.card-content');
+        contentElement.style.height = `${contentHeight}px`;
+
+    </script>
+}
+
+
