@@ -16,21 +16,45 @@
             border-color: #469fbf;
             border-radius: 0 0 4px 4px;
         }
+
+        .goodscard-title {
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .goodscard-descr {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .goods-card-footer {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 
 <div class="card-content">
-    <div class="card text-center shadow">
+    <div class="card text-center shadow rounded-lg w-75">
         <div class="card-header text-left">
-            <h1>@Model.goods_name</h1>
+            <h1 class="goodscard-title">@Model.goods_name</h1>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Особое обращение с титулом</h5>
-            <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
-            <a href="#" class="btn btn-primary">Идти куда-нибудь</a>
+            <h2 class="goodscard-descr text-left">Описание товара:</h2>
+            <p class="card-text text-left">@Model.goods_descr</p>
+            <h2 class="goodscard-descr text-left">Категория:</h2>
+            <p class="card-text text-left">@Model.category_name</p>
+            <h2 class="goodscard-descr text-left">Производитель:</h2>
+            <p class="card-text text-left">@Model.maker_name</p>
+            <a href="#" class="btn btn-info w-100">Закрыть</a>
         </div>
-        <div class="card-footer text-muted">
-            2 days ago
+        <div class="card-footer text-muted card-footer goods-card-footer">
+            <div class="w-50 text-center">
+                Цена за единицу - @Model.goods_price
+            </div>
+            <div class="w-50 text-center">
+                Остаток на складе - @Model.remaining_goods
+            </div>
         </div>
     </div>
 </div>
