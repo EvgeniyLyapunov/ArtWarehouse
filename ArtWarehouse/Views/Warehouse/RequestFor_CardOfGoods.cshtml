@@ -5,33 +5,7 @@
 }
 
 <head>
-    <style>
-        .card-content {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-width: 0 4px 4px 4px;
-            border-style: solid;
-            border-color: #469fbf;
-            border-radius: 0 0 4px 4px;
-        }
-
-        .goodscard-title {
-            font-size: 24px;
-            font-weight: 500;
-        }
-
-        .goodscard-descr {
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .goods-card-footer {
-            display: flex;
-            align-items: center;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/warehouse/goods-card.css"/>
 </head>
 
 <div class="card-content">
@@ -46,7 +20,7 @@
             <p class="card-text text-left">@Model.category_name</p>
             <h2 class="goodscard-descr text-left">Производитель:</h2>
             <p class="card-text text-left">@Model.maker_name</p>
-            <a href="#" class="btn btn-info w-100">Закрыть</a>
+            <a class="btn btn-info w-100" href="#" role="button" onclick="window.history.go(-1)">Закрыть</a>
         </div>
         <div class="card-footer text-muted card-footer goods-card-footer">
             <div class="w-50 text-center">

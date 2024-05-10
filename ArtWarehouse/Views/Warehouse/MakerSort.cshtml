@@ -43,25 +43,34 @@
                     <tbody>
                         @foreach (var item in Model.goodsList.Where(u => u.maker_id == maker.maker_id))
                         {
-                            <tr>
-                                <td style="width: 30%; font-size: 12px;">
+                            <tr class="goods-row" data-goodsid="@item.goods_id">
+                                <td style="width: 30%">
                                     @item.goods_name
                                 </td>
-                                <td style="width: 30%; font-size: 12px;">
+                                <td style="width: 30%">
                                     @Model.categoriesList.FirstOrDefault(u => u.category_id == item.goods_category_id).category_name
                                 </td>
-                                <td style="width: 7%; font-size: 12px;" class="text-center">
+                                <td style="width: 7%" class="text-center">
                                     @item.remaining_goods
                                 </td>
-                                <td style="width: 13%; font-size: 12px;" class="text-center">
+                                <td style="width: 13%" class="text-center">
                                     @item.update_date.ToShortDateString()
                                 </td>
                                 <td style="width: 15%;">
                                     <div class="control-cell">
-                                        <a class="item-control btn btn-outline-info btn-sm mr-2" data-toggle="tooltip" data-placement="top" title="Подробнее о товаре">
+                                        <a class="item-control btn btn-outline-info btn-sm mr-2" 
+                                           data-toggle="tooltip" 
+                                           data-placement="top" 
+                                           title="Подробнее о товаре"
+                                           asp-controller="Warehouse"
+                                           asp-action="RequestFor_CardOfGoods"
+                                           asp-route-id="@item.goods_id">
                                             <i class="far fa-eye"></i>
                                         </a>
-                                        <a class="item-control btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="top" title="Добавить в рабочий список">
+                                        <a class="item-control btn btn-outline-info btn-sm add-delete-goods-to-list"
+                                           data-toggle="tooltip" 
+                                           data-placement="top" 
+                                           title="Добавить в рабочий список">
                                             <i class="fas fa-plus"></i>
                                         </a>
                                     </div>
@@ -93,4 +102,6 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
+    <script src="/js/workList.js"></script>
+
 }

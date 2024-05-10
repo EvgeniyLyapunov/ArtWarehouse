@@ -47,10 +47,24 @@ a:not([tabindex]).sort-link {
     overflow-y: auto;
 }
 
+.goods-row {
+    color: #333;
+}
+
+.goods-row-selected {
+    color: #f71065;
+}
+
+.goods-cell {
+    color: inherit;
+    font-weight: inherit;
+    font-size: 12px
+}
+
 .control-cell {
     display: flex;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
 }
 
 .item-control.btn {

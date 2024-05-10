@@ -41,17 +41,17 @@
                 <tbody>
                     @foreach (var item in Model.goodsList)
                     {
-                        <tr>
-                            <td style="width: 30%; font-size: 12px;">
+                        <tr class="goods-row" data-goodsid="@item.goods_id" >
+                            <td class="goods-cell" style="width: 30%">
                                 @item.goods_name
                             </td>
-                            <td style="width: 30%; font-size: 12px;">
+                            <td style="width: 30%">
                                 @Model.categoriesList.FirstOrDefault(u => u.category_id == item.goods_category_id).category_name
                             </td>
-                            <td style="width: 7%; font-size: 12px;" class="text-center">
+                            <td style="width: 7%" class="text-center">
                                 @item.remaining_goods
                             </td>
-                            <td style="width: 13%; font-size: 12px;" class="text-center">
+                            <td style="width: 13%" class="text-center">
                                 @item.update_date.ToShortDateString()
                             </td>
                             <td style="width: 15%;">
@@ -65,8 +65,11 @@
                                         title="Подробнее о товаре">
                                             <i class="far fa-eye"></i>
                                     </a>
-                                    <a class="item-control btn btn-outline-info btn-sm" data-toggle="tooltip" data-placement="top" title="Добавить в рабочий список">
-                                        <i class="fas fa-plus"></i>
+                                    <a class="item-control item-control-add btn btn-outline-info btn-sm add-delete-goods-to-list"
+                                       data-toggle="tooltip" 
+                                       data-placement="top" 
+                                       title="Добавить в рабочий список">
+                                        <i class="fas fa-plus "></i>
                                     </a>
                                 </div>
                             </td>
@@ -81,6 +84,8 @@
 
 @section Scripts {
     <script>
+
+        // задаём размер блока content
         const screenHeight = document.documentElement.clientHeight;
         const header = document.querySelector('.header');
         const contentHeight = screenHeight - header.offsetHeight;
@@ -88,12 +93,15 @@
         const contentElement = document.querySelector('.warehouse-content');
         contentElement.style.height = `${contentHeight}px`;
 
+        // переключение активного таба
         const warehouseSortPanelElement = document.querySelector('.warehouse-sort-panel');
         const warehouseTableElement = document.querySelector('.warehouse-table');
         warehouseTableElement.style.height = `${contentHeight - warehouseSortPanelElement.offsetHeight}px`;
 
+        // активация подсказок у кнопок
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
-        })
+        });
     </script>
+    <script src="/js/workList.js"></script>
 }
