@@ -5,6 +5,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Linq;
+using System.Text;
 
 namespace ArtWarehouse.Services
 {
@@ -68,6 +69,49 @@ WHERE g.goods_id = @argid
             _db.Close();
 
             return goodsInfoForCard;
+        }
+
+        public GoodsCompleteInfo_MV GoodsWorkList_Get(string[] goodsId)
+        {
+            GoodsCompleteInfo_MV goodsWorkList = new GoodsCompleteInfo_MV();
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("(");
+
+            for (int i = 0; i < goodsId.Length; i++)
+            {
+                if (i != goodsId.Length - 1)
+                {
+                    sb.Append($"{goodsId[i]}, ");
+                }
+                else
+                {
+                    sb.Append($"{goodsId[i]})");
+                }
+            }
+
+            _db.Open();
+
+            string query = @$"
+SELECT
+    *
+FROM
+    goods g
+WHERE 
+    g.goods_id IN {sb}";
+
+            goodsWorkList.goodsList = _db.Query<Goods_Model>(query, null).OrderBy(u => u.goods_name);
+
+            query = @"SELECT * FROM goods_categories";
+            goodsWorkList.categoriesList = _db.Query<GoodsCategory_Model>(query, null).OrderBy(u => u.category_name);
+
+            query = @"SELECT * FROM goods_makers";
+            goodsWorkList.makersList = _db.Query<Maker_Model>(query, null).OrderBy(u => u.maker_name);
+
+            _db.Close();
+
+            return goodsWorkList;
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿// рабочий список товара
-const rowsList = document.querySelectorAll('.goods-row');
+﻿const rowsList = document.querySelectorAll('.goods-row');
+const clearWorkListBtn = document.querySelector('.worklist-link-clean');
 
 let rowIdList = [];
 
 if (sessionStorage.getItem('workList') !== null) {
     rowIdList = JSON.parse(sessionStorage.getItem('workList')).goodsIdArr;
+    clearWorkListBtn.classList.remove('worklist-link-clean_hide');
 }
 
 rowsList.forEach(item => {
@@ -23,11 +24,14 @@ rowsList.forEach(item => {
         icon.classList.remove('fa-plus');
         icon.classList.add('fa-trash-alt');
     }
-})
+});
+
+clearWorkListBtn.addEventListener('click', () => {
+    cleaningWorkList(rowsList, clearWorkListBtn)
+});
 
 function selectGoods(e) {
-
-    if (!e.currentTarget.classList.contains('goods-row') && (e.target.classList.contains('item-control-add') || e.target.classList.contains('fa-plus')))
+    if (!(e.target.classList.contains('item-control-add') || e.target.classList.contains('fas')))
         return;
 
     const goodsId = e.currentTarget.dataset.goodsid;
@@ -43,12 +47,15 @@ function selectGoods(e) {
                 e.currentTarget.classList.remove('goods-row-selected');
                 icon.classList.remove('fa-trash-alt');
                 icon.classList.add('fa-plus');
+                addDeleteBtn.setAttribute('title', 'Добавить в рабочий список');
+                clearWorkListBtn.classList.add('worklist-link-clean_hide');
             }
             else {
                 sessionStorage.setItem('workList', JSON.stringify(workList));
                 e.currentTarget.classList.remove('goods-row-selected');
                 icon.classList.remove('fa-trash-alt');
                 icon.classList.add('fa-plus');
+                addDeleteBtn.setAttribute('title', 'Добавить в рабочий список');
             }
         }
     }
@@ -70,5 +77,20 @@ function selectGoods(e) {
         e.currentTarget.classList.add('goods-row-selected');
         icon.classList.remove('fa-plus');
         icon.classList.add('fa-trash-alt');
+        clearWorkListBtn.classList.remove('worklist-link-clean_hide');
     }
+}
+
+function cleaningWorkList(rowsList, cleanBtn) {
+    rowsList.forEach(row => {
+        row.classList.remove('goods-row-selected');
+        const btn = row.querySelector('.add-delete-goods-to-list');
+        const icon = btn.querySelector('i');
+        icon.classList.add('fa-plus');
+        icon.classList.remove('fa-trash-alt');
+    });
+
+    sessionStorage.removeItem('workList');
+
+    cleanBtn.classList.add('worklist-link-clean_hide');
 }

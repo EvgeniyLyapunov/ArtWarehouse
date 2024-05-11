@@ -9,10 +9,16 @@
     overflow: hidden;
 }
 
-.warehouse-sort-panel {
+.warehouse-control-panel {
     padding-bottom: 10px;
     display: flex;
     align-items: last baseline;
+}
+
+.list-sort-block {
+    display: flex;
+    align-items: flex-end;
+    width: 60%;
 }
 
 .sort-panel-label {
@@ -41,6 +47,68 @@ a:not([href]):not([tabindex]).sort-link:hover {
 a:not([tabindex]).sort-link {
     color: inherit;
 }
+
+/* Блок печати и работы с рабочим списком */
+.list-control-block {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 40%;
+}
+
+.worklist-link, .worklist-link-clean {
+    padding: 5px 10px;
+    font-weight: 400;
+    font-size: 12px;
+    border: 1px solid #469fbf;
+    border-radius: 4px;
+    transition: 0.3s background-color ease-in-out, 0.3s color ease-in-out;
+    cursor: pointer;
+}
+
+    .worklist-link:hover {
+        background-color: #469fbf;
+        transition: 0.3s background-color ease-in-out, 0.3s color ease-in-out;
+    }
+
+a:not([href]):not([tabindex]).worklist-link:hover {
+    color: #fff;
+    transition: 0.3s background-color ease-in-out, 0.3s color ease-in-out;
+}
+
+a:not([href]):not([tabindex]).worklist-link:active {
+    color: #fff;
+    background-color: #469fbf;
+    box-shadow: rgba(0, 0, 0, 0.55) 0px 4px 8px -5px inset;
+    transition: 0.3s background-color ease-in-out, 0.3s color ease-in-out;
+}
+
+.worklist-link-clean {
+    border: 1px solid #f71065;
+    transition: 0.3s background-color ease-in-out, 0.3s color ease-in-out;
+}
+
+.worklist-link-clean_hide {
+    visibility: hidden;
+}
+
+a:not([href]):not([tabindex]).worklist-link-clean {
+    color: #f71065;
+    transition: 0.3s all ease-in-out;
+}
+
+    a:not([href]):not([tabindex]).worklist-link-clean:hover {
+        color: #fff;
+        background-color: #f71065;
+        transition: 0.3s background-color ease-in-out, 0.3s color ease-in-out;
+    }
+
+    a:not([href]):not([tabindex]).worklist-link-clean:active {
+        color: #fff;
+        background-color: #f71065;
+        box-shadow: rgba(0, 0, 0, 0.55) 0px 4px 8px -5px inset;
+        transition: 0.3s background-color ease-in-out, 0.3s color ease-in-out;
+    }
 
 .warehouse-table {
     width: 100%;

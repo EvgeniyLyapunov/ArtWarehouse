@@ -1,0 +1,43 @@
+﻿.preview-header {
+    width: 100%;
+    display: flex;
+}
+
+.preview-title-group {
+    display: flex;
+    align-items: center;
+}
+
+.preview-logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    background: url('../../images/logo/logo.png') center / contain no-repeat;
+}
+
+.preview-title {
+    padding: 0;
+    margin: 0;
+    font-weight: 700;
+    font-size: 24px;
+    color: #333;
+}
+
+.preview-footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.preview-btn-block {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.preview-category-title {
+    font-weight: 500;
+    font-size: 20px;
+}

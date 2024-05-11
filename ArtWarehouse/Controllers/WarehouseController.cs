@@ -11,6 +11,7 @@ using ArtWarehouse.Services;
 
 namespace ArtWarehouse.Controllers
 {
+    [Route("[controller]")]
     public class WarehouseController : Controller
     {
         public IConfiguration Configuration { get; }
@@ -19,8 +20,8 @@ namespace ArtWarehouse.Controllers
 
         public WarehouseController(IConfiguration configuration)
         {
-            warehouse_Db = new Warehouse_DbService(configuration);
             Configuration = configuration;
+            warehouse_Db = new Warehouse_DbService(Configuration);
         }
 
         [HttpGet]
