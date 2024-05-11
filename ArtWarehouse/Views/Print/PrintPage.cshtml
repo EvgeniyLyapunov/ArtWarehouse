@@ -185,60 +185,9 @@
                 &nbsp; Телефон менеджера: 755-55-108
             </div>
         </footer>
-
-        <form asp-action="CreatePdfFile" asp-controller="Print" method="post" style="display: none" id="formDataForPrint">
-            @for (int i = 0; i < Model.GoodsList.Count(); i++)
-            {
-                <input type="hidden" asp-for="@Model.GoodsList[i].goods_id" />
-                <input type="hidden" asp-for="@Model.GoodsList[i].goods_name" />
-                <input type="hidden" asp-for="@Model.GoodsList[i].goods_descr" />
-                <input type="hidden" asp-for="@Model.GoodsList[i].goods_category_id" />
-                <input type="hidden" asp-for="@Model.GoodsList[i].maker_id" />
-                <input type="hidden" asp-for="@Model.GoodsList[i].goods_price" />
-                <input type="hidden" asp-for="@Model.GoodsList[i].remaining_goods" />
-                <input type="hidden" asp-for="@Model.GoodsList[i].update_date" />
-            }
-
-            @for (int i = 0; i < Model.CategoriesList.Count(); i++)
-            {
-                <input type="hidden" asp-for="@Model.CategoriesList[i].category_id" />
-                <input type="hidden" asp-for="@Model.CategoriesList[i].category_name" />
-            }
-
-            @for (int i = 0; i < Model.MakersList.Count(); i++)
-            {
-                <input type="hidden" asp-for="@Model.MakersList[i].maker_id" />
-                <input type="hidden" asp-for="@Model.MakersList[i].maker_name" />
-                <input type="hidden" asp-for="@Model.MakersList[i].update_date" />
-            }
-
-            <input type="hidden" asp-for="@Model.PrintViewType" />
-        </form>
-
     </div>
 
-    <div class="preview-btn-block pb-5">
-        <a class="item-control btn btn-info btn-sm w-25 mr-3" id="btnSubmitPrintPreview">
-            Печать
-        </a>
-        <a class="item-control btn btn-secondary btn-sm w-25"
-            asp-controller="Warehouse"
-            asp-action="Index">
-            Отмена
-        </a>
-    </div>
-
-    <script>
-        const printBtn = document.getElementById('btnSubmitPrintPreview');
-        const form = document.getElementById('formDataForPrint');
-        printBtn.addEventListener('click', () => {
-            document.querySelector('.preview-btn-block').style.display = "none";
-            form.submit();
-        });
-    </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 </div>
-
-

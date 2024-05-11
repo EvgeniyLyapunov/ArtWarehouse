@@ -1,4 +1,8 @@
-﻿.preview-header {
+﻿.print-pdf {
+    width: 100%;
+}
+
+.preview-header {
     width: 100%;
     display: flex;
 }
@@ -25,9 +29,6 @@
 
 .preview-footer {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
 }
 
 .preview-btn-block {
@@ -40,4 +41,10 @@
 .preview-category-title {
     font-weight: 500;
     font-size: 20px;
+}
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
 }

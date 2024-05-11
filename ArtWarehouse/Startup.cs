@@ -9,6 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
+using ArtWarehouse.Services;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Http;
+using Rotativa.AspNetCore;
+using Humanizer;
 
 namespace ArtWarehouse
 {
@@ -44,6 +50,7 @@ namespace ArtWarehouse
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ArtWarehouse API", Version = "v1" });
             });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +64,8 @@ namespace ArtWarehouse
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            RotativaConfiguration.Setup(@"C:\Program Files\wkhtmltopdf", "bin");
+
             app.UseCors("AllowAll");
             app.UseSwagger();
             app.UseSwaggerUI(c =>

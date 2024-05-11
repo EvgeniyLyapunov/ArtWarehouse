@@ -101,13 +101,13 @@ FROM
 WHERE 
     g.goods_id IN {sb}";
 
-            goodsWorkList.goodsList = _db.Query<Goods_Model>(query, null).OrderBy(u => u.goods_name);
+            goodsWorkList.goodsList = _db.Query<Goods_Model>(query, null).OrderBy(u => u.goods_name).ToList();
 
             query = @"SELECT * FROM goods_categories";
-            goodsWorkList.categoriesList = _db.Query<GoodsCategory_Model>(query, null).OrderBy(u => u.category_name);
+            goodsWorkList.categoriesList = _db.Query<GoodsCategory_Model>(query, null).OrderBy(u => u.category_name).ToList();
 
             query = @"SELECT * FROM goods_makers";
-            goodsWorkList.makersList = _db.Query<Maker_Model>(query, null).OrderBy(u => u.maker_name);
+            goodsWorkList.makersList = _db.Query<Maker_Model>(query, null).OrderBy(u => u.maker_name).ToList();
 
             _db.Close();
 
