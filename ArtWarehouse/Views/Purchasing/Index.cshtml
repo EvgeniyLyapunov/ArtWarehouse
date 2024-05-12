@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Закупки";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/purchasing/purchasing.css" />
+</head>
+
+<div class="purchasing-content">
+    <div class="purchasing-info-block mt-3 ml-3">
+        <h2 class="purchasing-info-title">Рабочий список пуст.</h2>
+        <p class="purchasing-info-text">На вкладке "Склад" выбирите товарные позиции для формирования заказа поставщикам.</p>
+    </div>
+</div>
+
+
+<form id="dataForm" method="post" asp-controller="Purchasing" asp-action="PurchasingFormIndex" style="display: none;">
+    <input type="hidden" id="dataInput" name="data">
+</form>
+
+
+@section Scripts {
+    <script>
+        const mainTabsEl = document.querySelector('.main-tabs');
+        const listTabItems = mainTabsEl.querySelectorAll('.tab-item');
+
+        listTabItems.forEach(item => {
+            item.classList.remove('tab-item_active');
+
+            if (item.textContent == 'Закупки') { 
+                item.classList.add('tab-item_active');
+            }
+        });
+
+        const screenHeight = document.documentElement.clientHeight;
+        const header = document.querySelector('.header');
+        const contentHeight = screenHeight - header.offsetHeight;
+
+        const contentElement = document.querySelector('.purchasing-content');
+        contentElement.style.height = `${contentHeight}px`;
+
+
+        if (sessionStorage.getItem('workList') !== null) {
+            document.querySelector('.purchasing-info-block').style.display = "none";
+
+            let GoodsId = GetGoodsIdArray();
+
+            const dataForPurchasing = {
+                GoodsId
+            };
+
+            const json = JSON.stringify(dataForPurchasing);
+
+            document.getElementById('dataInput').value = json;
+            document.getElementById('dataForm').submit();
+        } else {
+            contentElement.classList.add('purchasing-content_bg');
+        }
+
+        function GetGoodsIdArray() {
+            return JSON.parse(sessionStorage.getItem('workList')).goodsIdArr;
+        }
+    </script>
+}
+

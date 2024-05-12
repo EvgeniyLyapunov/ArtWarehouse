@@ -1,4 +1,14 @@
-﻿const screenHeight = document.documentElement.clientHeight;
+﻿const mainTabsEl = document.querySelector('.main-tabs');
+const listTabItems = mainTabsEl.querySelectorAll('.tab-item');
+
+listTabItems.forEach(item => {
+    item.classList.remove('tab-item_active');
+    if (item.textContent === 'Склад') {
+        item.classList.add('tab-item_active');
+    }
+});
+
+const screenHeight = document.documentElement.clientHeight;
 const header = document.querySelector('.header');
 const contentHeight = screenHeight - header.offsetHeight;
 

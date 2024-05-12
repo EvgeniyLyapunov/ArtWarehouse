@@ -1,0 +1,109 @@
+﻿@model ArtWarehouse.Models.ModelsView.GoodsCompleteInfo_MV
+@{
+    ViewData["Title"] = "Закупки";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/purchasing/purchasing.css" />
+</head>
+
+<div class="purchasing-content">
+    <form class="purchasing-data-form" enctype="application/x-www-form-urlencoded"  id="purchasingDataForm" method="post" asp-controller="Purchasing" asp-action="PurchasingFormOrder">
+        <div class="purchasing-table">
+            @if (Model.makersList.Count() > 0)
+            {
+                @foreach (var maker in Model.makersList)
+                {
+                    @if (Model.goodsList.Where(u => u.maker_id == maker.maker_id).Count() == 0)
+                    {
+                        continue;
+                    }
+                    <h1 class="category-title">@maker.maker_name</h1>
+                    <table class="table table-bordered table-striped" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Наименование
+                                </th>
+                                <th>
+                                    Категория
+                                </th>
+                                <th class="text-center pl-0 pr-0">
+                                    Остаток
+                                </th>
+                                <th class="text-center pl-0 pr-0">
+                                    Дата изменения
+                                </th>
+                                <th>
+                                    Заказ, шт.
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.goodsList.Where(u => u.maker_id == maker.maker_id))
+                            {
+                                <tr class="goods-row" data-goodsid="@item.goods_id">
+                                    <td class="goods-cell" style="width: 30%">
+                                        @item.goods_name
+                                    </td>
+                                    <td class="goods-cell" style="width: 30%">
+                                        @Model.categoriesList.FirstOrDefault(u => u.category_id == item.goods_category_id).category_name
+                                    </td>
+                                    <td class="goods-cell text-center" style="width: 7%">
+                                        @item.remaining_goods
+                                    </td>
+                                    <td class="goods-cell text-center" style="width: 13%">
+                                        @item.update_date.ToShortDateString()
+                                    </td>
+                                    <td class="goods-cell" style="width: 15%;">
+                                        <input type="hidden" value="@item.goods_id" class="form-control" name="goods_id" />
+                                        <input class="form-control" name="remaining_goods" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            }
+        </div>
+    </form>
+    <div class="purchasing-btn-block py-3">
+        <a class="purchasing-btn purchasing-order-btn btn btn-info mr-3 w-25">Сделать заказ</a>
+        <a class="purchasing-btn btn btn-outline-info w-25">Отмена</a>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const mainTabsEl = document.querySelector('.main-tabs');
+        const listTabItems = mainTabsEl.querySelectorAll('.tab-item');
+
+        listTabItems.forEach(item => {
+            item.classList.remove('tab-item_active');
+
+            if (item.textContent == 'Закупки') {
+                item.classList.add('tab-item_active');
+            }
+        });
+
+        const screenHeight = document.documentElement.clientHeight;
+        const header = document.querySelector('.header');
+        const contentHeight = screenHeight - header.offsetHeight;
+
+        const contentElement = document.querySelector('.purchasing-content');
+        contentElement.style.height = `${contentHeight}px`;
+
+        const purchasingBtnBlockElem = document.querySelector('.purchasing-btn-block');
+        const purchasingBtnBlockElemHeight = purchasingBtnBlockElem.offsetHeight;
+
+        const purchasingForm = document.querySelector('.purchasing-data-form');
+        purchasingForm.style.height = `${contentHeight - purchasingBtnBlockElemHeight - 4}px`;
+
+        const purchasingOrderBtn = document.querySelector('.purchasing-order-btn');
+        purchasingOrderBtn.addEventListener('click', (e) => {
+            purchasingForm.submit();
+        });
+
+    </script>
+}
+

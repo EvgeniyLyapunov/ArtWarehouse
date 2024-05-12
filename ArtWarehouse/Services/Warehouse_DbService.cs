@@ -27,13 +27,13 @@ namespace ArtWarehouse.Services
             _db.Open();
 
             string query = @"SELECT * FROM goods";
-            goodsCompleteInfo_MV.goodsList = _db.Query<Goods_Model>(query, null).OrderBy(u => u.goods_name);
+            goodsCompleteInfo_MV.goodsList = _db.Query<Goods_Model>(query, null).OrderBy(u => u.goods_name).ToList();
 
             query = @"SELECT * FROM goods_categories";
-            goodsCompleteInfo_MV.categoriesList = _db.Query<GoodsCategory_Model>(query, null).OrderBy(u => u.category_name);
+            goodsCompleteInfo_MV.categoriesList = _db.Query<GoodsCategory_Model>(query, null).OrderBy(u => u.category_name).ToList();
 
             query = @"SELECT * FROM goods_makers";
-            goodsCompleteInfo_MV.makersList = _db.Query<Maker_Model>(query, null).OrderBy(u => u.maker_name);
+            goodsCompleteInfo_MV.makersList = _db.Query<Maker_Model>(query, null).OrderBy(u => u.maker_name).ToList();
 
             _db.Close();
 

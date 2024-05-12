@@ -28,6 +28,8 @@ namespace ArtWarehouse.Controllers
         [Route("warehouse-Index")]
         public IActionResult Index()
         {
+            TempData["Enter"] = "Yes";
+
             GoodsCompleteInfo_MV goodsCompleteInfo_MV;
 
             try
@@ -48,6 +50,8 @@ namespace ArtWarehouse.Controllers
         [Route("warehouse-Category")]
         public IActionResult CategorySort()
         {
+            TempData["Enter"] = "Yes";
+
             GoodsCompleteInfo_MV goodsCompleteInfo_MV;
 
             try
@@ -68,6 +72,8 @@ namespace ArtWarehouse.Controllers
         [Route("warehouse-Maker")]
         public IActionResult MakerSort()
         {
+            TempData["Enter"] = "Yes";
+
             GoodsCompleteInfo_MV goodsCompleteInfo_MV;
 
             try
@@ -87,6 +93,8 @@ namespace ArtWarehouse.Controllers
         [HttpGet]
         public IActionResult RequestFor_CardOfGoods(int id)
         {
+            TempData["Enter"] = "Yes";
+
             GoodsInfoForCard_MV goodsInfoForCard_MV;
 
             try

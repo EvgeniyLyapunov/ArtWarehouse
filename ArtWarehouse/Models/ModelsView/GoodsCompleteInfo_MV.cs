@@ -5,8 +5,8 @@ namespace ArtWarehouse.Models.ModelsView
 {
     public class GoodsCompleteInfo_MV
     {
-        public IEnumerable<Goods_Model> goodsList { get; set; }
-        public IEnumerable<GoodsCategory_Model> categoriesList { get; set; }
-        public IEnumerable<Maker_Model> makersList { get; set; }
+        public List<Goods_Model> goodsList { get; set; }
+        public List<GoodsCategory_Model> categoriesList { get; set; }
+        public List<Maker_Model> makersList { get; set; }
     }
 }

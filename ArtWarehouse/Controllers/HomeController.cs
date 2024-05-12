@@ -19,6 +19,7 @@ namespace ArtWarehouse.Controllers
 
         public IActionResult Index()
         {
+            TempData["Enter"] = "No";
             return View();
         }
     }

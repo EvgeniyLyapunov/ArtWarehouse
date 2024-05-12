@@ -1,0 +1,66 @@
+﻿.purchasing-content {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    border-width: 0 4px 4px 4px;
+    border-style: solid;
+    border-color: #469fbf;
+    border-radius: 0 0 4px 4px;
+    overflow-y: hidden;
+}
+
+.purchasing-content_bg {
+    background: url('../../images/img/emptyPapers.png') right 50px bottom 50px / 600px 400px no-repeat;
+}
+
+.purchasing-info-title {
+    font-size: 26px;
+}
+
+.purchasing-info-text {
+    font-size: 16px;
+}
+
+.purchasing-data-form {
+    width: 100%;
+    overflow-y: auto;
+}
+
+purchasing-table {
+    width: 100%;
+}
+
+.category-title {
+    font-size: 20px;
+}
+
+.goods-row {
+    color: #333;
+}
+
+.goods-cell {
+    color: inherit;
+    font-weight: inherit;
+    font-size: 12px
+}
+
+.table td {
+    padding: 0 5px;
+    vertical-align: middle;
+}
+
+.purchasing-btn {
+    cursor: pointer;
+}
+
+.purchasing-btn-block {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+a:not([href]):not([tabindex]).purchasing-order-btn {
+    color: #fff;
+}
+

@@ -33,10 +33,17 @@ namespace ArtWarehouse.Controllers
             var listForPrint = JsonConvert.DeserializeObject<ListForPrint_MV>(data);
 
             GoodsCompleteForPrint_MV goodsComplete = new GoodsCompleteForPrint_MV();
-
+            GoodsCompleteInfo_MV goodsCompleteInfo_MV;
             try
             {
-                GoodsCompleteInfo_MV goodsCompleteInfo_MV = _warehouse_Db.GoodsWorkList_Get(listForPrint.GoodsId);
+                if (listForPrint.GoodsId.Length == 0)
+                {
+                    goodsCompleteInfo_MV = _warehouse_Db.GoodsCompleteInfo_Get();
+                }
+                else
+                {
+                    goodsCompleteInfo_MV = _warehouse_Db.GoodsWorkList_Get(listForPrint.GoodsId);
+                }
                 goodsComplete.GoodsList = (List<Goods_Model>)goodsCompleteInfo_MV.goodsList;
                 goodsComplete.CategoriesList = (List<GoodsCategory_Model>)goodsCompleteInfo_MV.categoriesList;
                 goodsComplete.MakersList = (List<Maker_Model>)goodsCompleteInfo_MV.makersList;

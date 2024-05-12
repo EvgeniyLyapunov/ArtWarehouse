@@ -1,4 +1,9 @@
-﻿.warehouse-content {
+﻿.tab-item_active {
+    background-color: #fff;
+    box-shadow: unset;
+}
+
+.warehouse-content {
     position: relative;
     width: 100%;
     padding: 10px;

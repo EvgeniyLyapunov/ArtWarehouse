@@ -34,12 +34,24 @@
                 </div>
             </nav>
         </div>
-        <div class="main-tabs">
-            <a class="tab-item tab-item_active">Склад</a>
-            <a class="tab-item">Закупки</a>
-            <a class="tab-item">Продажи</a>
-            <a class="tab-item">Документы</a>
-        </div>
+        @if (TempData["Enter"] != null && TempData["Enter"].ToString() == "Yes")
+        {
+            <div class="main-tabs">
+                <a class="tab-item" asp-controller="Warehouse" asp-action="Index">Склад</a>
+                <a class="tab-item" asp-controller="Purchasing" asp-action="Index">Закупки</a>
+                <a class="tab-item">Продажи</a>
+                <a class="tab-item">Документы</a>
+            </div>
+        }
+        else if (TempData["Enter"] == null || TempData["Enter"].ToString() != "Yes")
+        {
+            <div class="main-tabs">
+                <a class="tab-item">Склад</a>
+                <a class="tab-item">Закупки</a>
+                <a class="tab-item">Продажи</a>
+                <a class="tab-item">Документы</a>
+            </div>
+        }
 
     </header>
     <div class="container" style="padding: 0">
@@ -47,26 +59,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', (e) => {
-
-            const mainTabsEl = document.querySelector('.main-tabs');
-            const listTabItems = mainTabsEl.querySelectorAll('.tab-item');
-
-            mainTabsEl.addEventListener('click', (e) => {
-                if (e.target.classList.contains('tab-item')) {
-
-                    listTabItems.forEach(item => {
-                        item.classList.remove('tab-item_active');
-                    });
-
-                    e.target.classList.add('tab-item_active');
-                }
-            });
-        });
-    </script>
-
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

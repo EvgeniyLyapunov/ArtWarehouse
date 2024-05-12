@@ -5,9 +5,13 @@ printBtn.addEventListener('click', () => {
 });
 
 function SendForPrint() {
+    let GoodsId = GetGoodsIdArray();
+
+    if (!GoodsId) GoodsId = [];
+
     const dataForPrint = {
         PrintViewType: GetSortTypeList(),
-        GoodsId: GetGoodsIdArray()
+        GoodsId
     };
 
     const json = JSON.stringify(dataForPrint);
@@ -35,5 +39,7 @@ function GetSortTypeList() {
     }
 }
 function GetGoodsIdArray() {
+    if (sessionStorage.getItem('workList') === null)
+        return null;
     return JSON.parse(sessionStorage.getItem('workList')).goodsIdArr;
 }
