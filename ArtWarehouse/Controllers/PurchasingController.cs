@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 
 namespace ArtWarehouse.Controllers
 {
@@ -65,13 +66,20 @@ namespace ArtWarehouse.Controllers
         {
             TempData["Enter"] = "Yes";
 
+            if (data.remaining_goods.Where(item => item == null).ToList().Count > 0)
+            {
+                TempData["ErrorSoursPageMessage"] = "Ошибка!";
+                TempData["ErrorMessage"] = "Проверьте что бы небыло нулевых или пустых значений в заказе.";
+                return RedirectToAction("Index", "Error");
+            }
+
             try
             {
                 _purchasing_Db.Purchasing_Insert(data);
             }
             catch (Exception ex)
             {
-                TempData["ErrorSoursPageMessage"] = "Ошибка сохранения данных в Базу Данных";
+                TempData["ErrorSoursPageMessage"] = "Ошибка сохранения данных в Базу Данныx.";
                 TempData["ErrorMessage"] = ex.Message;
                 return RedirectToAction("Index", "Error");
             }

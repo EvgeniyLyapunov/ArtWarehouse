@@ -57,7 +57,7 @@
                                     </td>
                                     <td class="goods-cell" style="width: 15%;">
                                         <input type="hidden" value="@item.goods_id" class="form-control" name="goods_id" />
-                                        <input class="form-control" name="remaining_goods" />
+                                        <input class="form-control" name="remaining_goods" required/>
                                     </td>
                                 </tr>
                             }
@@ -69,7 +69,7 @@
     </form>
     <div class="purchasing-btn-block py-3">
         <a class="purchasing-btn purchasing-order-btn btn btn-info mr-3 w-25">Сделать заказ</a>
-        <a class="purchasing-btn btn btn-outline-info w-25">Отмена</a>
+        <a class="purchasing-btn btn btn-outline-info w-25" asp-controller="Warehouse" asp-action="Index">Отмена</a>
     </div>
 </div>
 
