@@ -66,7 +66,8 @@ namespace ArtWarehouse.Controllers
         {
             TempData["Enter"] = "Yes";
 
-            if (data.remaining_goods.Where(item => item == null).ToList().Count > 0)
+            if (data.remaining_goods.Where(item => item == null).ToList().Count > 0 
+                || data.remaining_goods.Where(item => item == "0").ToList().Count > 0)
             {
                 TempData["ErrorSoursPageMessage"] = "Ошибка!";
                 TempData["ErrorMessage"] = "Проверьте что бы небыло нулевых или пустых значений в заказе.";
