@@ -3,6 +3,7 @@ using ArtWarehouse.Models.ModelsView;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Linq;
 
 namespace ArtWarehouse.Services
@@ -29,6 +30,65 @@ namespace ArtWarehouse.Services
             documentsList_MV.Documents = _db.Query<Document>(query, null).ToList();
 
             return documentsList_MV;
+        }
+
+        public SpecificDocument_MV SpecificDocument_Get(int id)
+        {
+            _db.Open();
+
+            var transaction = _db.BeginTransaction();
+            
+            try
+            {
+                string firstQuery = @"SELECT * FROM Orders o WHERE o.Id_Order = @argId";
+
+                var obj = new
+                {
+                    argId = id,
+                };
+
+                var doc = _db.Query<Document>(firstQuery, obj, transaction).First();
+
+                string query = @"
+SELECT
+    g.goods_id,
+    g.goods_name,
+    g.goods_descr,
+    gc.category_name,
+    gm.maker_name,
+    g.goods_price,
+    og.quantity
+FROM
+    Orders_Goods og
+    join goods g
+    on og.Id_Goods = g.goods_id
+    join goods_categories gc
+    on g.goods_category_id = gc.category_id
+    join goods_makers gm
+    on g.maker_id = gm.maker_Id
+WHERE og.Id_Order = @argId";
+
+                var goodsList = _db.Query<SpecificDocumentGoods_MV>(query, obj, transaction).ToList();
+
+                transaction.Commit();
+
+                SpecificDocument_MV specificDocument_MV = new SpecificDocument_MV
+                {
+                    Id_Order = id,
+                    type_order = doc.Type_Order,
+                    date_order = doc.Date_Order,
+                    GoodsList = goodsList
+                };
+
+                return specificDocument_MV;
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                _db.Close();
+
+                throw new Exception(ex.Message, ex);
+            }
         }
     }
 }

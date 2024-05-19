@@ -18,7 +18,8 @@ namespace ArtWarehouse.Controllers
             _dbService = new Documents_DbService(Configuration);
         }
 
-
+        [HttpGet]
+        [Route("Documents-Index")]
         public IActionResult Index()
         {
             TempData["Enter"] = "Yes";
@@ -36,6 +37,28 @@ namespace ArtWarehouse.Controllers
             }
 
             return View(documentsList_MV);
+        }
+
+        [HttpGet]
+        [Route("Documents-SpecificDocumet")]
+
+        public IActionResult RequestFor_SpecificDocumet(int id)
+        {
+            TempData["Enter"] = "Yes";
+            SpecificDocument_MV documentGoods_MV = new SpecificDocument_MV();
+
+            try
+            {
+                documentGoods_MV = _dbService.SpecificDocument_Get(id);
+            }
+            catch(Exception ex)
+            {
+                TempData["ErrorSoursPageMessage"] = "Ошибка получения данных из Базы Данных";
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index", "Error");
+            }
+
+            return View(documentGoods_MV);
         }
     }
 }

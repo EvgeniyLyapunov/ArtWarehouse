@@ -76,9 +76,19 @@ table td.goods-cell {
 }
 
 .control-cell {
-display: flex;
-align-items: center;
-justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.document-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.document-head span {
+    margin-right: 5px;
 }
 
 
