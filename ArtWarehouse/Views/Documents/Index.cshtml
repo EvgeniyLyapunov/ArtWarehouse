@@ -1,0 +1,95 @@
+﻿@model ArtWarehouse.Models.ModelsView.DocumentsList_MV
+
+@{
+    ViewData["Title"] = "Документы";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/documents/document.css" />
+</head>
+
+<div class="documents-content">
+    <div class="documents-control-panel">
+        <div class="list-sort-block">
+            <span class="sort-panel-label">Отобразить как:</span>
+            <a class="sort-link sort-link_active">Все</a>
+            <a class="sort-link">Приход товара</a>
+            <a class="sort-link">Расход товара</a>
+            <a class="sort-link">На дату</a>
+        </div>
+    </div>
+
+    <div class="documents-table">
+        @if (Model.Documents.Count() > 0)
+        {
+            <table class="table table-bordered table-striped" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Номер документа
+                        </th>
+                        <th>
+                            Тип операции документа
+                        </th>
+                        <th class="text-center pl-0 pr-0">
+                            Дата документа
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Documents.OrderByDescending(d => d.Date_Order))
+                    {
+                        <tr class="goods-row">
+                            <td class="goods-cell" style="width: 30%">
+                                @item.Id_Order
+                            </td>
+                            <td class="goods-cell" style="width: 30%">
+                                @(item.Type_Order == "arrival of goods" ? "Приходный документ" : "Расходный документ")
+                            </td>
+                            <td class="goods-cell text-center" style="width: 15%">
+                                @item.Date_Order.ToShortDateString()
+                            </td>
+                            <td style="width: 15%;">
+                                <div class="control-cell">
+                                    <a class="item-control btn btn-outline-info btn-sm mr-2"
+                                       asp-controller="Documents"
+                                       asp-action="RequestFor_ConcretDocumet"
+                                       asp-route-id="@item.Id_Order">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const mainTabsEl = document.querySelector('.main-tabs');
+        const listTabItems = mainTabsEl.querySelectorAll('.tab-item');
+
+        listTabItems.forEach(item => {
+            item.classList.remove('tab-item_active');
+
+            if (item.textContent == 'Документы') {
+                item.classList.add('tab-item_active');
+            }
+        });
+
+        const screenHeight = document.documentElement.clientHeight;
+        const header = document.querySelector('.header');
+        const contentHeight = screenHeight - header.offsetHeight;
+
+        const contentElement = document.querySelector('.documents-content');
+        contentElement.style.height = `${contentHeight}px`;
+
+        const controlPanelElement = document.querySelector('.documents-control-panel');
+        const documentsTableElement = document.querySelector('.documents-table');
+        documentsTableElement.style.height = `${contentHeight - controlPanelElement.offsetHeight}px`;
+    </script>
+}

@@ -15,6 +15,7 @@
 }
 
 .warehouse-control-panel {
+    min-height: 40px;
     padding-bottom: 10px;
     display: flex;
     align-items: last baseline;

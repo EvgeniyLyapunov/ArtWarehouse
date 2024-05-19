@@ -1,0 +1,84 @@
+﻿.tab-item_active {
+    background-color: #fff;
+    box-shadow: unset;
+}
+
+.documents-content {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    border-width: 0 4px 4px 4px;
+    border-style: solid;
+    border-color: #469fbf;
+    border-radius: 0 0 4px 4px;
+    overflow: hidden;
+}
+
+.documents-control-panel {
+    min-height: 40px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.list-sort-block {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.sort-panel-label {
+    margin-right: 40px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.sort-link {
+    font-style: italic;
+    font-size: 14px;
+    margin-right: 65px;
+    cursor: pointer;
+}
+
+a:not([href]):not([tabindex]).sort-link_active {
+    color: #469fbf;
+    text-decoration: underline;
+}
+
+
+a:not([href]):not([tabindex]).sort-link:hover {
+    text-decoration: underline;
+}
+
+a:not([tabindex]).sort-link {
+    color: inherit;
+}
+
+/* documents-table */
+
+.documents-table {
+    width: 100%;
+    overflow-y: auto;
+}
+
+.goods-row {
+    color: #333;
+}
+
+.goods-cell {
+    color: inherit;
+    font-weight: inherit;
+    font-size: 12px
+}
+
+table td.goods-cell {
+    vertical-align: middle !important;
+}
+
+.control-cell {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+

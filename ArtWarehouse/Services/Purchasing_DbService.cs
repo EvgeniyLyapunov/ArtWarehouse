@@ -26,7 +26,7 @@ namespace ArtWarehouse.Services
 
             try
             {
-                string query = @"INSERT INTO Orders DEFAULT VALUES";
+                string query = @"INSERT INTO Orders (type_order) VALUES ('arrival of goods')";
 
                 _db.Execute(query, null, transaction);
 

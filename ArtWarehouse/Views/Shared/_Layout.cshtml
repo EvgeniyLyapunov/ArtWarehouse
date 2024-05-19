@@ -40,7 +40,7 @@
                 <a class="tab-item" asp-controller="Warehouse" asp-action="Index">Склад</a>
                 <a class="tab-item" asp-controller="Purchasing" asp-action="Index">Закупки</a>
                 <a class="tab-item">Продажи</a>
-                <a class="tab-item">Документы</a>
+                <a class="tab-item" asp-controller="Documents" asp-action="Index">Документы</a>
             </div>
         }
         else if (TempData["Enter"] == null || TempData["Enter"].ToString() != "Yes")
