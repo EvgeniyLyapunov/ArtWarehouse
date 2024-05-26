@@ -58,6 +58,9 @@ a:not([tabindex]).sort-link {
 
 .documents-table {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     overflow-y: auto;
 }
 
@@ -89,6 +92,10 @@ table td.goods-cell {
 
 .document-head span {
     margin-right: 5px;
+}
+
+.document-close-btn {
+
 }
 
 

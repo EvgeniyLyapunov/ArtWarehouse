@@ -12,9 +12,9 @@
     <div class="documents-control-panel">
         <div class="list-sort-block">
             <span class="sort-panel-label">Отобразить как:</span>
-            <a class="sort-link sort-link_active">Все</a>
+            <a asp-controller="Documents" asp-action="Index" class="sort-link">Все</a>
             <a asp-controller="Documents" asp-action="DocumentsExpenseSort" class="sort-link">Расход товара</a>
-            <a asp-controller="Documents" asp-action="DocumentsReceiptSort" class="sort-link">Приход товара</a>
+            <a class="sort-link sort-link_active">Приход товара</a>
             <a class="sort-link">На дату</a>
         </div>
     </div>
@@ -93,3 +93,5 @@
         documentsTableElement.style.height = `${contentHeight - controlPanelElement.offsetHeight}px`;
     </script>
 }
+
+

@@ -4,6 +4,7 @@ using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -18,6 +19,19 @@ namespace ArtWarehouse.Services
         {
             Configuration = configuration;
             _db = new SqlConnection(configuration.GetConnectionString("DefaultConnection"));
+        }
+
+        public List<Goods_Model> ListGoods_Get()
+        {
+            List<Goods_Model> goods_Models = new List<Goods_Model>(); 
+
+            _db.Open();
+            string query = @"SELECT * FROM goods";
+            goods_Models = _db.Query<Goods_Model>(query, null).ToList();
+
+            _db.Close();
+
+            return goods_Models;
         }
 
         public GoodsCompleteInfo_MV GoodsCompleteInfo_Get()

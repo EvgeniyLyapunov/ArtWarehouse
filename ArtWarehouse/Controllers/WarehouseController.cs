@@ -17,11 +17,13 @@ namespace ArtWarehouse.Controllers
         public IConfiguration Configuration { get; }
 
         Warehouse_DbService warehouse_Db;
+        Sale_DbService sale_Db;
 
         public WarehouseController(IConfiguration configuration)
         {
             Configuration = configuration;
             warehouse_Db = new Warehouse_DbService(Configuration);
+            sale_Db = new Sale_DbService(Configuration);
         }
 
         [HttpGet]
@@ -34,6 +36,12 @@ namespace ArtWarehouse.Controllers
 
             try
             {
+                if (AutoGenerateSales.FirstSaleAutoGenerate == false)
+                {
+                    AutoGenerateSales.SalesGenerator(warehouse_Db, sale_Db);
+                    AutoGenerateSales.FirstSaleAutoGenerate = true;
+                }
+
                 goodsCompleteInfo_MV = warehouse_Db.GoodsCompleteInfo_Get();
             }
             catch (Exception ex)
