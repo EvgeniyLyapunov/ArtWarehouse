@@ -23,21 +23,25 @@ namespace ArtWarehouse.Services
                     int goodsIndex = 0;
                     int goodsCount = 0;
 
-                    while (true)
+                    int tryingCount = 3;
+
+                    while (tryingCount > 0)
                     {
                         goodsIndex = rnd.Next(0, listOfGoods.Count);
                         if (listOfGoods[goodsIndex].remaining_goods == 0)
-                            continue;
+                        {
+                            tryingCount--;
+                        }
                         else
                         {
                             goodsCount = rnd.Next(1, listOfGoods[goodsIndex].remaining_goods + 1);
+                            sale.GoodsIds.Add(listOfGoods[goodsIndex].goods_id);
+                            sale.GoodsCount.Add(goodsCount);
+                            listOfGoods[goodsIndex].remaining_goods = listOfGoods[goodsIndex].remaining_goods - goodsCount;
+
                             break;
                         }
                     }
-
-                    sale.GoodsIds.Add(listOfGoods[goodsIndex].goods_id);
-                    sale.GoodsCount.Add(goodsCount);
-                    listOfGoods[goodsIndex].remaining_goods = listOfGoods[goodsIndex].remaining_goods - goodsCount;
                 }
 
                 sale_Db.SaleTransaction(sale);
