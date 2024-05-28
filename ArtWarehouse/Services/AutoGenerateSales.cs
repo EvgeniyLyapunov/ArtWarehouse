@@ -1,5 +1,6 @@
 ﻿using ArtWarehouse.Models.ModelsView;
 using System;
+using System.Collections.Generic;
 
 namespace ArtWarehouse.Services
 {
@@ -10,10 +11,10 @@ namespace ArtWarehouse.Services
         {
             Random rnd = new Random();
             int countOfOrders = rnd.Next(1, 6);
-            var listOfGoods = warehouse_Db.ListGoods_Get();
 
             for (int i = 0; i < countOfOrders; i++)
             {
+                var listOfGoods = warehouse_Db.ListGoods_Get();
                 int countOfGoodsInOrder = rnd.Next(1, 6);
 
                 Sale_MV sale = new Sale_MV();
@@ -23,7 +24,7 @@ namespace ArtWarehouse.Services
                     int goodsIndex = 0;
                     int goodsCount = 0;
 
-                    int tryingCount = 3;
+                    int tryingCount = 2;
 
                     while (tryingCount > 0)
                     {

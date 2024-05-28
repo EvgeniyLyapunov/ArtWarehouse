@@ -90,6 +90,14 @@ namespace ArtWarehouse.Controllers
             return RedirectToAction("Index", "Warehouse");
         }
 
+        [HttpPost]
+        [Route("print-doc-preview")]
+        public IActionResult PrintDocPreview(string data)
+        {
+
+
+            return View();
+        }
 
     }
 }

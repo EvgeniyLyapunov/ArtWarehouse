@@ -8,6 +8,8 @@ using ArtWarehouse.Models;
 using ArtWarehouse.Models.ErrorModels;
 using System.Linq;
 using ArtWarehouse.Services;
+using Humanizer;
+using System.Globalization;
 
 namespace ArtWarehouse.Controllers
 {
@@ -18,6 +20,7 @@ namespace ArtWarehouse.Controllers
 
         Warehouse_DbService warehouse_Db;
         Sale_DbService sale_Db;
+
 
         public WarehouseController(IConfiguration configuration)
         {
@@ -36,11 +39,11 @@ namespace ArtWarehouse.Controllers
 
             try
             {
-                if (AutoGenerateSales.FirstSaleAutoGenerate == false)
-                {
-                    AutoGenerateSales.SalesGenerator(warehouse_Db, sale_Db);
-                    AutoGenerateSales.FirstSaleAutoGenerate = true;
-                }
+                //if (AutoGenerateSales.FirstSaleAutoGenerate == false)
+                //{
+                //    AutoGenerateSales.SalesGenerator(warehouse_Db, sale_Db);
+                //    AutoGenerateSales.FirstSaleAutoGenerate = true;
+                //}
 
                 goodsCompleteInfo_MV = warehouse_Db.GoodsCompleteInfo_Get();
             }

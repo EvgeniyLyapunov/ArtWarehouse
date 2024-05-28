@@ -1,4 +1,5 @@
-﻿@model ArtWarehouse.Models.ModelsView.SpecificDocument_MV
+﻿@using ArtWarehouse.Services
+@model ArtWarehouse.Models.ModelsView.SpecificDocument_MV
 @{
     ViewData["Title"] = "Документы";
 }
@@ -8,6 +9,92 @@
 </head>
 
 <div class="documents-content">
+    <div class="doc-header-company-info">
+        <span><b>Организация:</b>&nbsp;&nbsp;Фастинтергрупп</span>
+        <span><b>ИНН:</b>&nbsp;&nbsp;77755333108108</span>
+    </div>
+    <div class="doc-main-title">
+        @if (Model.type_order == "arrival of goods")
+        {
+            <h1 class="doc-main-title__type-doc">Приходная накладная&nbsp;№&nbsp;@Model.Id_Order</h1>
+        }
+        else
+        {
+            <h1 class="doc-main-title__type-doc">Расходная накладная&nbsp;№&nbsp;@Model.Id_Order</h1>
+        }
+        <span>от&nbsp;@Model.date_order.ToLongDateString()</span>
+    </div>
+    <div class="doc-warehouse-info">
+        <span class="doc-warehouse-info__text"><b>Склад:</b>&nbsp;Склад№1</span>
+    </div>
+    <div class="doc-table">
+        <table class="table table-bordered table-striped" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>№ ПП</th>
+                    <th>Наименование</th>
+                    <th class="text-center">Ед. изм.</th>
+                    <th class="text-center">Цена</th>
+                    <th class="text-center">Количество</th>
+                    <th class="text-center">Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int i = 1;} 
+                @{double total = 0;} 
+                @foreach (var row in Model.GoodsList)
+                {
+                    <tr class="goods-row">
+                        <td class="goods-cell" style="width: 10%">
+                            @(i++)
+                        </td>
+                        <td class="goods-cell" style="width: 30%">
+                            @row.goods_name
+                        </td>
+                        <td class="goods-cell text-center" style="width: 15%">
+                            шт.
+                        </td>
+                        <td class="goods-cell text-center" style="width: 15%">
+                            @row.goods_price.ToString("F2")
+                        </td>
+                        <td class="goods-cell text-center" style="width: 10%">
+                            @row.Quantity
+                        </td>
+                        <td class="goods-cell text-center" style="width: 10%">
+                            @((row.Quantity * (int)row.goods_price).ToString("F2"))
+                            @{
+                                total = total + (row.Quantity * (double)row.goods_price);
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="doc-summary">
+        <div class="left-side">
+            @if (Model.type_order == "arrival of goods")
+            {
+                <span >Принято ценностей на сумму:</span>
+            }
+            else
+            {
+                <span >Отгружено ценностей на сумму:</span>
+            }
+        </div>
+        <div class="right-side">
+            <span><b>Итого:</b></span>
+            <span class="total-cell">@total.ToString("F2")</span>
+        </div>
+    </div>
+    <div class="doc-total-by-words">
+        <div>@NumberToWords.NumbersPriceToWords_Converter((Math.Round(total * 100) / 100))</div>
+    </div>
+    <div class="doc-total-by-words__instruction">сумма прописью</div>
+    <div class="doc-signatures"></div>
+</div>
+
+@* <div class="documents-content">
     <div class="documents-table">
         <div class="document-head mb-3">
             @if (Model.type_order == "arrival of goods")
@@ -62,7 +149,7 @@
         <a asp-controller="Documents" asp-action="Index" class="document-close-btn btn btn-outline-info">Закрыть</a>
     </div>
 </div>
-
+ *@
 @section Scripts {
     <script>
         const mainTabsEl = document.querySelector('.main-tabs');

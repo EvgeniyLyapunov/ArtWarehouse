@@ -65,7 +65,7 @@ WHERE
     goods_id = @arggoods_id";
                     var obj2 = new
                     {
-                        argremaining_goods = oldRemaining_goods - sale.GoodsCount[i],
+                        argremaining_goods = oldRemaining_goods - sale.GoodsCount[i] <= 0 ? 0 : oldRemaining_goods - sale.GoodsCount[i],
                         arggoods_id = sale.GoodsIds[i]
                     };
 
