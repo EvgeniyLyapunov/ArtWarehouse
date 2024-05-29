@@ -2,8 +2,11 @@
 using ArtWarehouse.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Rotativa.AspNetCore;
 using System;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 
 namespace ArtWarehouse.Controllers
 {
@@ -105,5 +108,50 @@ namespace ArtWarehouse.Controllers
 
             return View(documentGoods_MV);
         }
+
+        [HttpGet]
+        [Route("document-print-pdf")]
+        public IActionResult CreatePdfFile(int id)
+        {
+            TempData["Enter"] = "Yes";
+
+            SpecificDocument_MV documentGoods_MV = new SpecificDocument_MV();
+
+            try
+            {
+                documentGoods_MV = _dbService.SpecificDocument_Get(id);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorSoursPageMessage"] = "Ошибка получения данных из Базы Данных";
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index", "Error");
+            }
+
+            var pdfContentTask = new ViewAsPdf("RequestFor_SpecificDocumet_Pdf", documentGoods_MV)
+            {
+                PageSize = Rotativa.AspNetCore.Options.Size.A4, // Формат страницы
+                PageMargins = new Rotativa.AspNetCore.Options.Margins(0, 0, 0, 0), // Отступы в мм
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait, // Горизонтальная ориентация
+            }.BuildFile(ControllerContext);
+
+            try
+            {
+                pdfContentTask.Wait(); // Ждем завершения задачи
+                var pdfContent = pdfContentTask.Result; // Получаем результат из задачи
+                System.IO.File.WriteAllBytes("order-document.pdf", pdfContent);
+            }
+            catch (AggregateException ex)
+            {
+                foreach (var innerEx in ex.InnerExceptions)
+                {
+                    Debug.WriteLine($"Inner Exception: {innerEx.Message}");
+                }
+            }
+
+
+            return RedirectToAction("Index", "Documents");
+        }
+
     }
 }

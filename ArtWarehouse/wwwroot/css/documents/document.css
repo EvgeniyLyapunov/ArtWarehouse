@@ -3,99 +3,6 @@
     box-shadow: unset;
 }
 
-.documents-content {
-    position: relative;
-    width: 100%;
-    padding: 10px;
-    border-width: 0 4px 4px 4px;
-    border-style: solid;
-    border-color: #469fbf;
-    border-radius: 0 0 4px 4px;
-    overflow: hidden;
-}
-
-.doc-header-company-info {
-    width: 100%;
-    padding-top: 10px;
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.doc-main-title {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.doc-main-title__type-doc {
-    font-size: 30px;
-}
-
-.doc-warehouse-info {
-    padding: 10px;
-}
-
-.doc-table {
-    width: 100%;
-    padding: 10px 10px 0 10px;
-}
-
-.table {
-    margin-bottom: 0 !important;
-}
-
-.doc-summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.left-side {
-    padding: 25px 10px 0 10px;
-}
-
-.right-side {
-    padding: 10px 10px 0 10px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.total-cell {
-    margin-left: 50px;
-    padding: 0 30px;
-    font-size: 18px;
-    font-weight: 700;
-}
-
-.doc-total-by-words {
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 10px 0 3px 0;
-    display: flex;
-    flex-direction: column;
-    font-size: 17px;
-    font-weight: 700;
-    border-bottom: 2px solid #000;
-}
-
-.doc-total-by-words__instruction {
-    text-align: center;
-    font-size: 12px;
-}
-
-
-
-
-
-
-
-
-
 .documents-control-panel {
     min-height: 40px;
     padding-bottom: 10px;
@@ -177,7 +84,161 @@ table td.goods-cell {
 }
 
 .document-close-btn {
-
 }
 
+.documents-content {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    border-width: 0 4px 4px 4px;
+    border-style: solid;
+    border-color: #469fbf;
+    border-radius: 0 0 4px 4px;
+    overflow-y: auto;
+}
 
+.doc-header-company-info {
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.doc-btns-panel {
+    position: absolute;
+    width: 160px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 20px;
+    right: 20px;
+}
+
+.doc-btns-panel > a:not([href]):not([tabindex]) {
+    color: #fff;
+    cursor: pointer;
+}
+
+.doc-main-title {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.doc-main-title__type-doc {
+    font-size: 30px;
+}
+
+.doc-warehouse-info {
+    padding: 10px;
+}
+
+.doc-table {
+    width: 100%;
+    padding: 10px 10px 0 10px;
+}
+
+.table {
+    margin-bottom: 0 !important;
+} 
+
+.doc-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.left-side {
+    padding: 25px 10px 0 10px;
+}
+
+.right-side {
+    padding: 10px 10px 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.total-cell {
+    margin-left: 50px;
+    padding: 0 30px;
+    font-size: 18px;
+    font-weight: 700;
+} 
+
+.doc-total-by-words {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 0 3px 0;
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
+    font-weight: 700;
+    border-bottom: 2px solid #000;
+} 
+
+.doc-total-by-words__instruction {
+    text-align: center;
+    font-size: 12px;
+}
+
+.doc-signatures {
+    width: 100%;
+    margin-top: 15px;
+    padding: 0 10px;
+    display: flex;
+} 
+
+.doc-signatures__accepted {
+    width: 50%;
+    height:50px;
+    display: flex;
+}
+
+.doc-signatures__accepted-label {
+    width: 12%;
+    height: 25px;
+    font-size: 16px;
+    line-height: 25px;
+} 
+
+.doc-signatures__accepted-signature {
+    position: relative;
+    width: 80%;
+    height: 25px;
+    border-bottom: 2px solid #333;
+}
+
+.doc-signatures__accepted-sublabel {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    font-style: italic;
+} 
+
+.doc-signatures__passed {
+    width: 50%;
+    height: 50px;
+    display: flex;
+}
+
+.doc-signatures__passed-label {
+    width: 9%;
+    height: 25px;
+    font-size: 16px;
+    line-height: 25px;
+}
+
+.doc-signatures__passed-signature {
+    position: relative;
+    width: 91%;
+    height: 25px;
+    border-bottom: 2px solid #333;
+}

@@ -3,23 +3,174 @@
 @{
     ViewData["Title"] = "Документы";
 }
+@{
+    Layout = null;
+}
 
 <head>
-    <link rel="stylesheet" href="~/css/documents/document.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/fontawesome/css/all.css" />
+
+    <style>
+        .documents-content {
+            position: relative;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .doc-header-company-info {
+            width: 100%;
+            padding-top: 10px;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .doc-btns-panel {
+            position: absolute;
+            width: 160px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            top: 20px;
+            right: 20px;
+        }
+
+            .doc-btns-panel > a:not([href]):not([tabindex]) {
+                color: #fff;
+                cursor: pointer;
+            }
+
+        .doc-main-title {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .doc-main-title__type-doc {
+            font-size: 30px;
+        }
+
+        .doc-warehouse-info {
+            padding: 10px;
+        }
+
+        .doc-table {
+            width: 100%;
+            padding: 10px 10px 0 10px;
+        }
+
+        .table {
+            margin-bottom: 0 !important;
+        }
+
+        .doc-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .left-side {
+            padding: 25px 10px 0 10px;
+        }
+
+        .right-side {
+            padding: 10px 10px 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .total-cell {
+            margin-left: 50px;
+            padding: 0 30px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .doc-total-by-words {
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 10px 0 3px 0;
+            display: flex;
+            flex-direction: column;
+            font-size: 17px;
+            font-weight: 700;
+            border-bottom: 2px solid #000;
+        }
+
+        .doc-total-by-words__instruction {
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .doc-signatures {
+            width: 100%;
+            margin-top: 15px;
+            padding: 0 10px;
+            display: flex;
+        }
+
+        .doc-signatures__accepted {
+            width: 50%;
+            height: 50px;
+            display: flex;
+        }
+
+        .doc-signatures__accepted-label {
+            width: 12%;
+            height: 25px;
+            font-size: 16px;
+            line-height: 25px;
+        }
+
+        .doc-signatures__accepted-signature {
+            position: relative;
+            width: 80%;
+            height: 25px;
+            border-bottom: 2px solid #333;
+        }
+
+        .doc-signatures__accepted-sublabel {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        .doc-signatures__passed {
+            width: 50%;
+            height: 50px;
+            display: flex;
+        }
+
+        .doc-signatures__passed-label {
+            width: 9%;
+            height: 25px;
+            font-size: 16px;
+            line-height: 25px;
+        }
+
+        .doc-signatures__passed-signature {
+            position: relative;
+            width: 91%;
+            height: 25px;
+            border-bottom: 2px solid #333;
+        }
+
+    </style>
 </head>
 
 <div class="documents-content">
     <div class="doc-header-company-info">
         <span><b>Организация:</b>&nbsp;&nbsp;Фастинтергрупп</span>
         <span><b>ИНН:</b>&nbsp;&nbsp;77755333108108</span>
-    </div>
-
-    <div class="doc-btns-panel">
-        <a asp-controller="Documents" asp-action="Index" class="btn btn-info btn-sm doc-button">Закрыть</a>
-        <a asp-controller="Documents" asp-action="CreatePdfFile" asp-route-id="@Model.Id_Order" class="btn btn-info btn-sm doc-button">
-            Печать&nbsp;
-            <i class="fas fa-print"></i>
-        </a>
     </div>
 
     <div class="doc-main-title">
@@ -117,26 +268,7 @@
 </div>
 
 @section Scripts {
-    <script>
-        const mainTabsEl = document.querySelector('.main-tabs');
-        const listTabItems = mainTabsEl.querySelectorAll('.tab-item');
-
-        listTabItems.forEach(item => {
-            item.classList.remove('tab-item_active');
-
-            if (item.textContent == 'Документы') {
-                item.classList.add('tab-item_active');
-            }
-        });
-
-        const screenHeight = document.documentElement.clientHeight;
-        const header = document.querySelector('.header');
-        const contentHeight = screenHeight - header.offsetHeight;
-
-        const contentElement = document.querySelector('.documents-content');
-        contentElement.style.height = `${contentHeight}px`;
-
-        const documentsTableElement = document.querySelector('.documents-table');
-        documentsTableElement.style.height = `${contentHeight - 2}px`;
-    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 }

@@ -94,8 +94,6 @@ namespace ArtWarehouse.Controllers
         [Route("print-doc-preview")]
         public IActionResult PrintDocPreview(string data)
         {
-
-
             return View();
         }
 
