@@ -132,7 +132,8 @@ namespace ArtWarehouse.Controllers
             {
                 PageSize = Rotativa.AspNetCore.Options.Size.A4, // Формат страницы
                 PageMargins = new Rotativa.AspNetCore.Options.Margins(0, 0, 0, 0), // Отступы в мм
-                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait, // Горизонтальная ориентация
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape, // Горизонтальная ориентация
+                CustomSwitches = "--keep-relative-links --enable-internal-links --keep-relative-links  --user-style-sheet ~/css/documents/document.css  "
             }.BuildFile(ControllerContext);
 
             try

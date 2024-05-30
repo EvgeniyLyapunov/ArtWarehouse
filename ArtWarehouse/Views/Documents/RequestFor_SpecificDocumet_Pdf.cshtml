@@ -167,22 +167,24 @@
     </style>
 </head>
 
+
+
 <div class="documents-content">
     <div class="doc-header-company-info">
-        <span><b>Организация:</b>&nbsp;&nbsp;Фастинтергрупп</span>
-        <span><b>ИНН:</b>&nbsp;&nbsp;77755333108108</span>
+        <div><b>Организация:</b>&nbsp;&nbsp;Фастинтергрупп</div>
+        <div><b>ИНН:</b>&nbsp;&nbsp;77755333108108</div>
     </div>
 
     <div class="doc-main-title">
         @if (Model.type_order == "arrival of goods")
         {
-            <h1 class="doc-main-title__type-doc">Приходная накладная&nbsp;№&nbsp;@Model.Id_Order</h1>
+            <h1 class="doc-main-title__type-doc" style="text-align: center">Приходная накладная&nbsp;№&nbsp;@Model.Id_Order</h1>
         }
         else
         {
             <h1 class="doc-main-title__type-doc">Расходная накладная&nbsp;№&nbsp;@Model.Id_Order</h1>
         }
-        <span>от&nbsp;@Model.date_order.ToLongDateString()</span>
+        <div style="text-align:center">от&nbsp;@Model.date_order.ToLongDateString()</div>
     </div>
     <div class="doc-warehouse-info">
         <span class="doc-warehouse-info__text"><b>Склад:</b>&nbsp;Склад№1</span>
@@ -232,7 +234,7 @@
         </table>
     </div>
     <div class="doc-summary">
-        <div class="left-side">
+        <div class="left-side" style="display:inline-block; width:50%">
             @if (Model.type_order == "arrival of goods")
             {
                 <span >Принято ценностей на сумму:</span>
@@ -242,7 +244,7 @@
                 <span >Отгружено ценностей на сумму:</span>
             }
         </div>
-        <div class="right-side">
+        <div class="right-side" style="display:inline-block; width:50%">
             <span><b>Итого:</b></span>
             <span class="total-cell">@total.ToString("F2")</span>
         </div>
