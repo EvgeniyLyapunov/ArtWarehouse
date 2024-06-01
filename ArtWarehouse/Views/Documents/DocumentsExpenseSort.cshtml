@@ -15,7 +15,10 @@
             <a asp-controller="Documents" asp-action="Index" class="sort-link">Все</a>
             <a class="sort-link sort-link_active">Расход товара</a>
             <a asp-controller="Documents" asp-action="DocumentsReceiptSort" class="sort-link">Приход товара</a>
-            <a class="sort-link">На дату</a>
+            <button class="sort-link sort-date-btn">На дату</button>
+            <form method="get" asp-controller="Documents" asp-action="DocumentsDateSort" class="sort-date-form">
+                <input class="sort-date-input" type="date" name="documentDate" />
+            </form>
         </div>
     </div>
 
@@ -65,6 +68,11 @@
                 </tbody>
             </table>
         }
+        else
+        {
+            <p class="documents-empty-info">Нет документов для отображения.</p>
+        }
+
     </div>
 </div>
 
@@ -91,6 +99,22 @@
         const controlPanelElement = document.querySelector('.documents-control-panel');
         const documentsTableElement = document.querySelector('.documents-table');
         documentsTableElement.style.height = `${contentHeight - controlPanelElement.offsetHeight}px`;
+
+        const sortDateForm = document.querySelector('.sort-date-form');
+        const sortDateBtn = document.querySelector('.sort-date-btn');
+        const sortDateInput = document.querySelector('.sort-date-input');
+
+        sortDateBtn.addEventListener('click', () => {
+            const date = new Date(sortDateInput.value);
+
+            if (isNaN(date) || date > new Date()) {
+                alert("Дата документа должна быть меньше текущей!")
+                return;
+            }
+
+            sortDateForm.submit();
+        })
+
     </script>
 }
 

@@ -89,8 +89,28 @@ namespace ArtWarehouse.Controllers
         }
 
         [HttpGet]
-        [Route("Documents-SpecificDocumet")]
+        [Route("Documents-DataSort")]
+        public IActionResult DocumentsDateSort([FromQuery] DateTime documentDate)
+        {
+            TempData["Enter"] = "Yes";
+            DocumentsList_MV documentsList_MV = new DocumentsList_MV();
 
+            try
+            {
+                documentsList_MV = _dbService.DocumentsList_GetByDate(documentDate);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorSoursPageMessage"] = "Ошибка получения данных из Базы Данных";
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Index", "Error");
+            }
+
+            return View(documentsList_MV);
+        }
+
+        [HttpGet]
+        [Route("Documents-SpecificDocumet")]
         public IActionResult RequestFor_SpecificDocumet(int id)
         {
             TempData["Enter"] = "Yes";

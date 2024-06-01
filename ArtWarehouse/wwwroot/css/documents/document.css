@@ -43,8 +43,44 @@ a:not([tabindex]).sort-link {
     color: inherit;
 }
 
-/* documents-table */
+/* sort-date */
 
+.sort-date-form {
+    display: flex;
+    align-items: flex-end;
+}
+
+.sort-date-btn {
+    margin-right: 15px;
+    border: unset;
+    background-color: transparent;
+}
+
+.sort-date-btn:hover {
+    text-decoration: underline;
+}
+
+.sort-date-btn:active {
+    color: #469fbf;
+    text-decoration: underline;
+}
+
+.sort-date-btn:focus, .sort-date-btn:active {
+    outline: none;
+}
+
+.sort-date-input {
+    padding: 0 5px;
+    border: unset;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    cursor: pointer;
+}
+
+.sort-date-input:focus, .sort-date-input:active {
+    outline: none;
+}
+
+/* documents-table */
 .documents-table {
     width: 100%;
     display: flex;
@@ -241,4 +277,11 @@ table td.goods-cell {
     width: 91%;
     height: 25px;
     border-bottom: 2px solid #333;
+}
+
+/* documents-empty-info */
+
+.documents-empty-info {
+    padding: 15px 0 0 10px;
+    align-self: flex-start;
 }

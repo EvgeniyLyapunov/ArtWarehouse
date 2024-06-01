@@ -32,6 +32,25 @@ namespace ArtWarehouse.Services
             return documentsList_MV;
         }
 
+        public DocumentsList_MV DocumentsList_GetByDate(DateTime date)
+        {
+            DocumentsList_MV documentsList_MV = new DocumentsList_MV();
+
+            _db.Open();
+
+            string query = @"SELECT * FROM Orders o WHERE o.date_order = @argDate";
+
+            var obj = new
+            {
+                argDate = date,
+            };
+
+            documentsList_MV.Documents = _db.Query<Document>(query, obj, null).ToList();
+
+            return documentsList_MV;
+        }
+
+
         public SpecificDocument_MV SpecificDocument_Get(int id)
         {
             _db.Open();
