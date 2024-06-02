@@ -65,14 +65,14 @@
                     <tbody>
                         @foreach (var item in Model.goodsList.Where(u => u.goods_category_id == category.category_id))
                         {
-                            <tr class="goods-row" data-goodsid="@item.goods_id">
+                            <tr class="goods-row" data-goodsid="@item.goods_id" style="color: @(item.remaining_goods < 5 ? "blue" : "black")">
                                 <td style="width: 30%">
                                     @item.goods_name
                                 </td>
                                 <td style="width: 30%">
                                     @Model.makersList.FirstOrDefault(u => u.maker_id == item.maker_id).maker_name
                                 </td>
-                                <td style="width: 7%" class="text-center">
+                                <td style="width: 7%" class="cell-with-remaining-data text-center" data-remaining="@item.remaining_goods">
                                     @item.remaining_goods
                                 </td>
                                 <td style="width: 13%" class="text-center">
@@ -124,6 +124,12 @@
             formSearch.submit();
             searchInput.value = '';
         });
+
+        const cellsWithRemainingData_List = document.querySelectorAll('.cell-with-remaining-data');
+
+        if ([...cellsWithRemainingData_List].some(item => item.dataset.remaining < 5)) {
+            alert('На остатках есть товар в количестве менее 5 штук.\nТакие позиции выделены синим цветом.')
+        }
     </script>
 }
 
