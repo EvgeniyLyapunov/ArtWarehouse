@@ -13,20 +13,11 @@
     <div class="warehouse-control-panel">
         <div class="list-sort-block">
             <span class="sort-panel-label">Отобразить как:</span>
-            <a class="sort-link sort-link_active">Полный список</a>
+            <a class="sort-link" asp-controller="Warehouse" asp-action="Index">Полный список</a>
             <a class="sort-link" asp-controller="Warehouse" asp-action="CategorySort">По категориям</a>
             <a class="sort-link" asp-controller="Warehouse" asp-action="MakerSort">По производителям</a>
         </div>
-        <div class="list-search-block">
-            <form asp-controller="Warehouse" asp-action="SearchResult" class="warehouse-form-search" method="get">
-                <input class="list-search-block__input" type="text" name="searchRequest" />
-            </form>
-            <label class="list-search-block__btn">
-                <span>Найти</span>
-                <i class="fas fa-search"></i>
-            </label>
-        </div>
-        <div class="list-control-block"> 
+        <div class="list-control-block">
             <a class="worklist-link-clean mr-2 worklist-link-clean_hide">
                 Очистить&nbsp;
                 <i class="fas fa-hand-sparkles"></i>
@@ -62,7 +53,8 @@
                 <tbody>
                     @foreach (var item in Model.goodsList)
                     {
-                        <tr class="goods-row" data-goodsid="@item.goods_id" >
+                        <tr class="goods-row" data-goodsid="@item.goods_id">
+                            <td class="goods-cell-id-hidden" style="display: none" id="@item.goods_id"></td>
                             <td class="goods-cell" style="width: 30%">
                                 @item.goods_name
                             </td>
@@ -77,11 +69,11 @@
                             </td>
                             <td style="width: 15%;">
                                 <div class="control-cell">
-                                    <a class="item-control btn btn-outline-info btn-sm mr-2" 
-                                        asp-controller="Warehouse" 
-                                        asp-action="RequestFor_CardOfGoods" 
-                                        asp-route-id="@item.goods_id">
-                                            <i class="far fa-eye"></i>
+                                    <a class="item-control btn btn-outline-info btn-sm mr-2"
+                                       asp-controller="Warehouse"
+                                       asp-action="RequestFor_CardOfGoods"
+                                       asp-route-id="@item.goods_id">
+                                        <i class="far fa-eye"></i>
                                     </a>
                                     <a class="item-control item-control-add btn btn-outline-info btn-sm add-delete-goods-to-list">
                                         <i class="fas fa-plus"></i>
@@ -93,6 +85,10 @@
                 </tbody>
             </table>
         }
+        else
+        {
+            <p class="goods-search__empty-info">Нет данных для отображения.</p>
+        }
     </div>
     <form id="dataForm" method="post" asp-controller="Print" asp-action="Index" style="display: none;">
         <input type="hidden" id="dataInput" name="data">
@@ -101,25 +97,29 @@
 
 
 @section Scripts {
-    <script src="~/js/selectedListToPrint.js"></script>
     <script src="~/js/contentHeightSize.js"></script>
     <script src="~/js/workList.js"></script>
     <script>
-        const formSearch = document.querySelector('.warehouse-form-search');
-        const searchInput = document.querySelector('.list-search-block__input');
-        const searchBtn = document.querySelector('.list-search-block__btn');
+        const printBtn = document.querySelector('.print-link');
 
-        searchInput.value = '';
+        printBtn.addEventListener('click', () => {
+            SendForPrint();
+        });
 
-        searchBtn.addEventListener('click', (e) => {
-            const inputData = searchInput.value;
-
-            if (inputData === '') {
-                return;
+        const SendForPrint = () => {
+            const cellsWithId = document.querySelectorAll('.goods-cell-id-hidden');
+            const formData = {
+                PrintViewType: 0,
+                GoodsId: []
             }
 
-            formSearch.submit();
-            searchInput.value = '';
-        });
+            cellsWithId.forEach(item => {
+                formData.GoodsId.push(item.getAttribute('id'));
+            });
+
+            const json = JSON.stringify(formData);
+            document.getElementById('dataInput').value = json;
+            document.getElementById('dataForm').submit();
+        }
     </script>
 }

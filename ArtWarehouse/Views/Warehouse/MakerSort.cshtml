@@ -16,9 +16,18 @@
             <a class="sort-link" asp-controller="Warehouse" asp-action="CategorySort">По категориям</a>
             <a class="sort-link sort-link_active">По производителям</a>
         </div>
+        <div class="list-search-block">
+            <form asp-controller="Warehouse" asp-action="SearchResult" class="warehouse-form-search" method="get">
+                <input class="list-search-block__input" type="text" name="searchRequest" />
+            </form>
+            <label class="list-search-block__btn">
+                <span>Найти</span>
+                <i class="fas fa-search"></i>
+            </label>
+        </div>
         <div class="list-control-block">
-            <a class="worklist-link-clean mr-5 worklist-link-clean_hide">
-                Очистить список выбранных элементов&nbsp;
+            <a class="worklist-link-clean mr-2 worklist-link-clean_hide">
+                Очистить&nbsp;
                 <i class="fas fa-hand-sparkles"></i>
             </a>
             <a class="worklist-link print-link">
@@ -97,4 +106,22 @@
     <script src="~/js/selectedListToPrint.js"></script>
     <script src="~/js/contentHeightSize.js"></script>
     <script src="~/js/workList.js"></script>
+    <script>
+        const formSearch = document.querySelector('.warehouse-form-search');
+        const searchInput = document.querySelector('.list-search-block__input');
+        const searchBtn = document.querySelector('.list-search-block__btn');
+
+        searchInput.value = '';
+
+        searchBtn.addEventListener('click', (e) => {
+            const inputData = searchInput.value;
+
+            if (inputData === '') {
+                return;
+            }
+
+            formSearch.submit();
+            searchInput.value = '';
+        });
+    </script>
 }

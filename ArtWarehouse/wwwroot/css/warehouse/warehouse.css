@@ -24,11 +24,11 @@
 .list-sort-block {
     display: flex;
     align-items: flex-end;
-    width: 60%;
+    width: 80%;
 }
 
 .sort-panel-label {
-    margin-right: 40px;
+    margin-right: 30px;
     font-weight: 700;
     font-size: 12px;
 }
@@ -36,7 +36,7 @@
 .sort-link {
     font-style: italic;
     font-size: 14px;
-    margin-right: 65px;
+    margin-right: 25px;
     cursor: pointer;
 }
 
@@ -52,6 +52,57 @@ a:not([href]):not([tabindex]).sort-link:hover {
 
 a:not([tabindex]).sort-link {
     color: inherit;
+}
+
+/* list-search-block */
+.list-search-block {
+    display: flex;
+    align-items: flex-start;
+}
+
+.list-search-block__input {
+    padding: 3px 7px;
+    margin-right: 15px;
+    height:28px;
+    font-size: 12px;
+    line-height: 26px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.list-search-block__input:focus {
+    outline: none;
+}
+
+.list-search-block__btn {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.list-search-block__btn:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+
+.list-search-block__btn:active {
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.list-search-block label span {
+    margin-right: 10px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.goods-search__empty-info {
+    padding: 15px 0 0 10px;
+    align-self: flex-start;
 }
 
 /* Блок печати и работы с рабочим списком */
