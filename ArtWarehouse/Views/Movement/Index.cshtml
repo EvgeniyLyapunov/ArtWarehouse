@@ -1,0 +1,76 @@
+﻿@model ArtWarehouse.Models.ModelsView.Movement_MV
+@{
+    ViewData["Title"] = "Движение";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/movement/movement.css" />
+</head>
+
+<div class="movement-content">
+    <div class="movement-table">
+        @if (Model.NamesOfGoods.Count > 0)
+        {
+            @foreach (var goodsName in Model.NamesOfGoods)
+            {
+                <h1 class="movement-goods-title">@goodsName</h1>
+                <table class="table table-bordered table-striped" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                Дата
+                            </th>
+                            <th>
+                                Тип операции
+                            </th>
+                            <th class="text-center pl-0 pr-0">
+                                Количество товара
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.movementGoods.Where(u => u.Name == goodsName))
+                        {
+                            <tr class="goods-row">
+                                <td style="width: 33%">
+                                    @item.Date_Order.ToShortDateString()
+                                </td>
+                                <td style="width: 33%">
+                                    @(item.Type == "sale of goods" ? "Продажа" : "Приход")
+                                </td>
+                                <td style="width: 33%" class="cell-with-remaining-data text-center">
+                                    @item.Quantity
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const mainTabsEl = document.querySelector('.main-tabs');
+        const listTabItems = mainTabsEl.querySelectorAll('.tab-item');
+
+        listTabItems.forEach(item => {
+            item.classList.remove('tab-item_active');
+
+            if (item.textContent == 'Движение') {
+                item.classList.add('tab-item_active');
+            }
+        });
+
+        const screenHeight = document.documentElement.clientHeight;
+        const header = document.querySelector('.header');
+        const contentHeight = screenHeight - header.offsetHeight;
+
+        const contentElement = document.querySelector('.movement-content');
+        contentElement.style.height = `${contentHeight}px`;
+
+        const documentsTableElement = document.querySelector('.movement-table');
+        documentsTableElement.style.height = `${contentHeight}px`;
+    </script>
+}

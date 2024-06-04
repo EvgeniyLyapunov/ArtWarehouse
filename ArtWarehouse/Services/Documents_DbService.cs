@@ -4,7 +4,9 @@ using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 
 namespace ArtWarehouse.Services
 {
@@ -104,6 +106,60 @@ WHERE og.Id_Order = @argId";
             catch (Exception ex)
             {
                 transaction.Rollback();
+                _db.Close();
+
+                throw new Exception(ex.Message, ex);
+            }
+        }
+
+        public Movement_MV MovementGoods_Get()
+        {
+            _db.Open();
+            try
+            {
+                string query = @"
+SELECT 
+g.goods_name as Name,
+og.Quantity,
+o.type_order as Type,
+o.date_order as Date_Order
+FROM
+    goods g
+JOIN
+    Orders_Goods og
+ON g.goods_id = og.Id_Goods
+JOIN 
+    Orders o
+ON o.Id_Order = og.Id_Order
+ORDER BY g.goods_name, o.type_order
+";
+                List<MovementGoods_MV> movementGoods_MV = _db.Query<MovementGoods_MV>(query, null).ToList();
+
+                query = @"
+SELECT DISTINCT
+g.goods_name as Name
+FROM
+    goods g
+JOIN
+    Orders_Goods og
+ON g.goods_id = og.Id_Goods
+JOIN 
+    Orders o
+ON o.Id_Order = og.Id_Order
+ORDER BY g.goods_name
+";
+                List<string> NamesOfGoods = _db.Query<string>(query, null).ToList();
+
+                Movement_MV model = new Movement_MV
+                {
+                    movementGoods = movementGoods_MV,
+                    NamesOfGoods = NamesOfGoods
+                };
+
+                return model;
+            }
+            catch(Exception ex)
+            {
                 _db.Close();
 
                 throw new Exception(ex.Message, ex);

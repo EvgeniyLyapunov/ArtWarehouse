@@ -39,11 +39,11 @@ namespace ArtWarehouse.Controllers
 
             try
             {
-                //if (AutoGenerateSales.FirstSaleAutoGenerate == false)
-                //{
-                //    AutoGenerateSales.SalesGenerator(warehouse_Db, sale_Db);
-                //    AutoGenerateSales.FirstSaleAutoGenerate = true;
-                //}
+                if (AutoGenerateSales.FirstSaleAutoGenerate == false)
+                {
+                    AutoGenerateSales.SalesGenerator(warehouse_Db, sale_Db);
+                    AutoGenerateSales.FirstSaleAutoGenerate = true;
+                }
 
                 goodsCompleteInfo_MV = warehouse_Db.GoodsCompleteInfo_Get();
             }
