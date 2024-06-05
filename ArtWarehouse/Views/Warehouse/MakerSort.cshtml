@@ -64,7 +64,7 @@
                     <tbody>
                         @foreach (var item in Model.goodsList.Where(u => u.maker_id == maker.maker_id))
                         {
-                            <tr class="goods-row" data-goodsid="@item.goods_id" style="color: @(item.remaining_goods < 5 ? "blue" : "black")">
+                            <tr class="goods-row" data-goodsid="@item.goods_id" data-remaining="@item.remaining_goods">
                                 <td style="width: 30%">
                                     @item.goods_name
                                 </td>
@@ -113,6 +113,15 @@
     <script src="~/js/contentHeightSize.js"></script>
     <script src="~/js/workList.js"></script>
     <script>
+        const goodsRow_List = document.querySelectorAll('.goods-row ');
+        goodsRow_List.forEach(row => {
+            const remainingGoodsRow = row.dataset.remaining;
+            if (remainingGoodsRow < 5) {
+                row.classList.add('goods-remaining-low');
+            }
+        });
+
+
         const formSearch = document.querySelector('.warehouse-form-search');
         const searchInput = document.querySelector('.list-search-block__input');
         const searchBtn = document.querySelector('.list-search-block__btn');

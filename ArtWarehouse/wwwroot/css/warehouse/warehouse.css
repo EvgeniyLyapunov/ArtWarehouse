@@ -177,7 +177,11 @@ a:not([href]):not([tabindex]).worklist-link-clean {
 }
 
 .goods-row-selected {
-    color: #f71065;
+    color: #f71065 !important;
+}
+
+.goods-remaining-low {
+    color: blue;
 }
 
 .goods-cell {

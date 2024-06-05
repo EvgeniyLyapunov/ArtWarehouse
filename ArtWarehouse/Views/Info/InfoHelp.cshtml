@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Помощь";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/info-help/info-help.css" />
+</head>
+
+<div class="info-help-content">
+
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Сворачиваемый групповой элемент #1
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    Некоторый заполнитель для первой панели аккордеона. Эта панель отображается по умолчанию благодаря классу <code>.show</code>.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Сворачиваемый групповой элемент #2
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    Некоторый заполнитель для второй панели аккордеона. По умолчанию эта панель скрыта.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Сворачиваемый групповой элемент #3
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    И, наконец, заполнитель для третьей и последней панели аккордеона. По умолчанию эта панель скрыта.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script>
+        const mainTabsEl = document.querySelector('.main-tabs');
+        const listTabItems = mainTabsEl.querySelectorAll('.tab-item');
+
+        listTabItems.forEach(item => {
+            item.classList.remove('tab-item_active');
+        });
+
+        const screenHeight = document.documentElement.clientHeight;
+        const header = document.querySelector('.header');
+        const contentHeight = screenHeight - header.offsetHeight;
+
+        const contentElement = document.querySelector('.info-help-content');
+        contentElement.style.height = `${contentHeight}px`;
+
+    </script>
+}
+
+
+

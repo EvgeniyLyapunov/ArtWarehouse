@@ -4,9 +4,9 @@ const clearWorkListBtn = document.querySelector('.worklist-link-clean');
 let rowIdList = [];
 
 if (sessionStorage.getItem('workList') !== null) {
-    rowIdList = JSON.parse(sessionStorage.getItem('workList')).goodsIdArr;
-    clearWorkListBtn.classList.remove('worklist-link-clean_hide');
+    sessionStorage.removeItem('workList');
 }
+
 
 rowsList.forEach(item => {
     item.addEventListener('click', (e) => {

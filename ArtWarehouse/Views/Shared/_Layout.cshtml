@@ -16,14 +16,37 @@
                 <div class="main-title">Арт-Склад</div>
             </div>
             <nav class="main-navigation">
-                <div>
-                    <i class="far fa-address-card"></i>
-                    <a class="main-navigation_link">Контакты</a>
-                </div>
-                <div>
-                    <i class="far fa-question-circle"></i>
-                    <a class="main-navigation_link">Помощь</a>
-                </div>
+                @if (TempData["Enter"] != null && TempData["Enter"].ToString() == "Yes")
+                {
+                    <div>
+                        <a class="main-navigation_link main-navigation_link-contacts">
+                            <i class="far fa-address-card"></i>
+                            Контакты
+                        </a>
+                    </div>
+                    <div>
+                        <a asp-controller="Info" asp-action="InfoHelp" class="main-navigation_link main-navigation_link-help">
+                            <i class="far fa-question-circle"></i>
+                            Помощь
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <a class="main-navigation_link">
+                            <i class="far fa-address-card"></i>
+                            Контакты
+                        </a>
+                    </div>
+                    <div>
+                        <a class="main-navigation_link">
+                            <i class="far fa-question-circle"></i>
+                            Помощь
+                        </a>
+                    </div>
+
+                }
                 <div class="ml-5">
                     <i class="fas fa-user-check"></i>
                     <a class="main-navigation_link user-link">Ляпунова А.Е.</a>

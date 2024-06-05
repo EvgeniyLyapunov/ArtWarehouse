@@ -22,6 +22,8 @@ namespace ArtWarehouse.Controllers
 
         public IActionResult Index()
         {
+            TempData["Enter"] = "Yes";
+
             Movement_MV model = new Movement_MV();
 
             try

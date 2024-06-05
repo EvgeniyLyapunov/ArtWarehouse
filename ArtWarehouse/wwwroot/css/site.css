@@ -47,6 +47,20 @@
 }
 
 .main-navigation_link {
+    color: #e5ffff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.main-navigation_link:hover {
+    color: #e5ffff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.main-navigation_link:active {
+    color: #e5ffff;
+    text-decoration: underline;
     cursor: pointer;
 }
 

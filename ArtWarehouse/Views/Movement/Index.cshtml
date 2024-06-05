@@ -29,7 +29,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.movementGoods.Where(u => u.Name == goodsName))
+                        @foreach (var item in Model.movementGoods.Where(u => u.Name == goodsName).OrderBy(item => item.Date_Order))
                         {
                             <tr class="goods-row">
                                 <td style="width: 33%">

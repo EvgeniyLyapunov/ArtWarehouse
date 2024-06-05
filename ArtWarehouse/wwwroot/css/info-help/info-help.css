@@ -1,0 +1,15 @@
+﻿.info-help-content {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    border-width: 0 4px 4px 4px;
+    border-style: solid;
+    border-color: #469fbf;
+    border-radius: 0 0 4px 4px;
+    overflow-y: auto;
+}
+
+.main-navigation_link-help {
+    color: #f9ff93;
+    text-decoration: none;
+}
