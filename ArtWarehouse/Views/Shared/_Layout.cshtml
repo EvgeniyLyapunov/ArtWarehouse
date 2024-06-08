@@ -47,14 +47,27 @@
                     </div>
 
                 }
-                <div class="ml-5">
-                    <i class="fas fa-user-check"></i>
-                    <a class="main-navigation_link user-link">Ляпунова А.Е.</a>
-                </div>
-                <div>
-                    <i class="fas fa-sign-out-alt"></i>
-                    <a class="main-navigation_link">Выход</a>
-                </div>
+                @if (TempData["Enter"] != null && TempData["Enter"].ToString() == "Yes")
+                {
+                    <div class="ml-5">
+                        <i class="fas fa-user-check"></i>
+                        <a id="user-link-nickname" class="main-navigation_link user-link"></a>
+                    </div>
+                    <div>
+                        <i class="fas fa-sign-out-alt"></i>
+                        <a id="user-link-exit-from-account" asp-controller="Home" asp-action="Index" class="main-navigation_link">Выход</a>
+                    </div>
+
+                }
+                else
+                {
+                    <div class="ml-5">
+                        <a class="main-navigation_link user-link">Вход в систему не выполнен!</a>
+                    </div>
+                    <div>
+                        <i class="fas fa-door-closed"></i>
+                    </div>
+                }
             </nav>
         </div>
         @if (TempData["Enter"] != null && TempData["Enter"].ToString() == "Yes")

@@ -31,8 +31,13 @@ namespace ArtWarehouse.Controllers
 
         [HttpGet]
         [Route("warehouse-Index")]
-        public IActionResult Index()
+        public IActionResult Index(string username = null)
         {
+            if (username != null)
+            {
+                TempData["Nickname"] = username;
+            }
+
             TempData["Enter"] = "Yes";
 
             GoodsCompleteInfo_MV goodsCompleteInfo_MV;

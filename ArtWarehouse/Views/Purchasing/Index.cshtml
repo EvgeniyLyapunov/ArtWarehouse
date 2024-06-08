@@ -21,6 +21,13 @@
 
 @section Scripts {
     <script>
+        const nickElem = document.getElementById('user-link-nickname');
+        if (sessionStorage.getItem('nick')) {
+            nickElem.textContent = sessionStorage.getItem('nick');
+        } else {
+            window.location.href = '@Url.Action("Index", "Home")';
+        }
+
         const mainTabsEl = document.querySelector('.main-tabs');
         const listTabItems = mainTabsEl.querySelectorAll('.tab-item');
 

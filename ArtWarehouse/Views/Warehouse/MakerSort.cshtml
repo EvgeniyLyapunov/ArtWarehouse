@@ -113,6 +113,13 @@
     <script src="~/js/contentHeightSize.js"></script>
     <script src="~/js/workList.js"></script>
     <script>
+        const nickElem = document.getElementById('user-link-nickname');
+        if (sessionStorage.getItem('nick')) {
+            nickElem.textContent = sessionStorage.getItem('nick');
+        } else {
+            window.location.href = '@Url.Action("Index", "Home")';
+        }
+
         const goodsRow_List = document.querySelectorAll('.goods-row ');
         goodsRow_List.forEach(row => {
             const remainingGoodsRow = row.dataset.remaining;

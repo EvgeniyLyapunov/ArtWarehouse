@@ -100,6 +100,13 @@
     <script src="~/js/contentHeightSize.js"></script>
     <script src="~/js/workList.js"></script>
     <script>
+        const nickElem = document.getElementById('user-link-nickname');
+        if (sessionStorage.getItem('nick')) {
+            nickElem.textContent = sessionStorage.getItem('nick');
+        } else {
+            window.location.href = '@Url.Action("Index", "Home")';
+        }
+
         const printBtn = document.querySelector('.print-link');
 
         printBtn.addEventListener('click', () => {

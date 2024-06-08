@@ -35,6 +35,12 @@
 
 @section Scripts {
     <script>
+        const nickElem = document.getElementById('user-link-nickname');
+        if (sessionStorage.getItem('nick')) {
+            nickElem.textContent = sessionStorage.getItem('nick');
+        } else {
+            window.location.href = '@Url.Action("Index", "Home")';
+        }
 
         const screenHeight = document.documentElement.clientHeight;
         const header = document.querySelector('.header');

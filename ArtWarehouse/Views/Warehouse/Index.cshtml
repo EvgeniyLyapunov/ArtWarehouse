@@ -38,6 +38,11 @@
         </div>
     </div>
 
+    @if (TempData["Nickname"] != null)
+    {
+        <span id="hideSpanWithNickName" data-nick="@TempData["Nickname"].ToString()" style="display: none"></span>
+    }
+
     <div class="warehouse-table">
         @if (Model.goodsList.Count() > 0)
         {
@@ -105,6 +110,19 @@
     <script src="~/js/contentHeightSize.js"></script>
     <script src="~/js/workList.js"></script>
     <script>
+        const hideSpan = document.getElementById('hideSpanWithNickName');
+        if (hideSpan) {
+            sessionStorage.setItem('nick', hideSpan.dataset.nick)
+            hideSpan.remove();
+        }
+
+        const nickElem = document.getElementById('user-link-nickname');
+        if (sessionStorage.getItem('nick')) {
+            nickElem.textContent = sessionStorage.getItem('nick');
+        } else {
+            window.location.href = '@Url.Action("Index", "Home")';
+        }
+
 
         const goodsRow_List = document.querySelectorAll('.goods-row ');
         goodsRow_List.forEach(row => {

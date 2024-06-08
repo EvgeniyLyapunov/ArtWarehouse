@@ -11,11 +11,15 @@
         Система складского учёта и товарного документооборота. Разработана для ООО "Фастинтергрупп".
     </p>
     <p class="home-copy">AnitaSalujaStudio&copy; little wing studio&copy; 2024</p>
-    <a class="btn btn-info w-25 home-btn" asp-controller="Warehouse" asp-action="Index">Вход</a>
+    <a class="btn btn-info w-25 home-btn" asp-controller="Home" asp-action="Enter">Вход</a>
 </div>
 
 @section Scripts {
     <script>
+        if (sessionStorage.getItem('nick')) {
+            sessionStorage.removeItem('nick');
+        }
+
         const screenHeight = document.documentElement.clientHeight;
         const header = document.querySelector('.header');
         const homeContentHeight = screenHeight - header.offsetHeight;
